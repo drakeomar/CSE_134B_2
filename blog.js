@@ -81,9 +81,9 @@ function blogMain(){
                         </div>
                         `;
                 outputBox.innerHTML += newPost;
-                document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).addEventListener('click', ()=>{
+                document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).onclick = () =>{
                     deleteBlogPost(this);
-                });
+                };
             }
 
     });
