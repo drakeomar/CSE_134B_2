@@ -14,7 +14,9 @@ Storage.prototype.setObj = function(key, obj) {
 Storage.prototype.getObj = function(key) {
     return JSON.parse(this.getItem(key))
 }
-
+function makeDummyPosts(){
+    return [[],[],[],[]]
+}
 /**blogMain
  *
  */
@@ -37,11 +39,7 @@ function blogMain(){
 
     /** Check if posts variable exists in localStorage, handle it**/
     if (localStorage.getItem("posts") === null) {
-        posts = new Array(24);
-        posts[0] = "HELLO WORLD"
-        posts[1] = "HELLO WORLD"
-        posts[2] = "HELLO WORLD"
-        posts[3] = "HELLO WORLD"
+        posts = makeDummyPosts();
         localStorage.setObj('posts', posts);
     }else{
         posts = localStorage.getObj(`posts`);
