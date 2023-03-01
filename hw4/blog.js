@@ -106,6 +106,8 @@ function blogMain(){
                 newPostArray.push(dateInput.value);
                 newPostArray.push(summaryInput.value);
                 posts.push(newPostArray);
+
+                localStorage.setObj("posts", posts);
             }
 
     });
