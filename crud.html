@@ -22,11 +22,11 @@
                 <form method="dialog">
                     <p>
                         <label for="title-input">Title:</label>
-                        <input type="text" name="title-input" id="title-input">
+                        <input type="text" name="title-input" id="title-input" required>
                     </p>
                     <p>
                         <label for="date-input">Date:</label>
-                        <input type="date" name="date-input" id="date-input">
+                        <input type="date" name="date-input" id="date-input" required>
                     </p>
                     <p>
                         <label>Summary:
@@ -37,7 +37,7 @@
                         </textarea>
                     </p>
                     <div>
-                        <button value="cancel">Cancel</button>
+                        <button id="cancel-button" value="cancel">Cancel</button>
                         <button id="confirmBtn" value="default">Confirm</button>
                     </div>
                 </form>
