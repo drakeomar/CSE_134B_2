@@ -4,32 +4,36 @@
     <meta charset="UTF-8">
     <title>Native Browser Dialog Example</title>
     <script>
-        let alertButton = document.getElementById('alert-button');
-        let confirmButton = document.getElementById('confirm-button');
-        let promptButton = document.getElementById('prompt-button');
-        let saferPromptButton = document.getElementById('safer-prompt-button');
+        document.addEventListener('DOMContentLoaded', (event) => {
+            //the event occurred
+            let alertButton = document.getElementById('alert-button');
+            let confirmButton = document.getElementById('confirm-button');
+            let promptButton = document.getElementById('prompt-button');
+            let saferPromptButton = document.getElementById('safer-prompt-button');
 
-        alertButton.addEventListener("click", alertFunction);
-        confirmButton.addEventListener("click", confirmFunction);
-        promptButton.addEventListener("click", promptFunction);
-        saferPromptButton.addEventListener("click", saferPromptFunction);
+            alertButton.addEventListener("click", alertFunction);
+            confirmButton.addEventListener("click", confirmFunction);
+            promptButton.addEventListener("click", promptFunction);
+            saferPromptButton.addEventListener("click", saferPromptFunction);
 
-        function alertFunction() {
-            window.alert("TEST");
-        }
+            function alertFunction() {
+                window.alert("TEST");
+            }
 
-        function confirmFunction() {
-            window.confirm("TEST?");
-        }
+            function confirmFunction() {
+                window.confirm("TEST?");
+            }
 
-        function promptFunction() {
-            window.prompt("HELLO WORLD");
-        }
+            function promptFunction() {
+                window.prompt("HELLO WORLD");
+            }
 
-        function saferPromptFunction() {
+            function saferPromptFunction() {
 
 
-        }
+            }
+        })
+
     </script>
 </head>
 <body>
