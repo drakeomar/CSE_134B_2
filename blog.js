@@ -57,6 +57,8 @@ function createBlogPost(){
 
     const newPostDialog = document.getElementById('new-post-dialog');
     const titleInput = document.getElementById('title-input');
+    const dateInput = document.getElementById('date-input');
+    const summaryInput = document.getElementById('summary-text');
     const confirmBtn = document.getElementById('confirmBtn');
     const outputBox = document.getElementById('output-box');
 
@@ -72,8 +74,10 @@ function createBlogPost(){
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     newPostDialog.addEventListener('close', () => {
 
-        let newPost = `<h1>${titleInput.value}:</h1><p>hello</p>`;
-        outputBox.innerHTML = `ReturnValue: ${newPost}.`;
+        let newPost = `<h1>${titleInput.value}:</h1>
+                       <p>${dateInput.value}</p>
+                       <p>${summaryInput.value}</p>`;
+        outputBox.innerHTML = `NEWPOST: ${newPost}.`;
     });
 }
 function deleteBlogPost(){
