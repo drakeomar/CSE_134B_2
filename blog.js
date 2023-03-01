@@ -65,8 +65,11 @@ function createBlogPost(){
 
     /**clear inputs and show dialog for new post*/
     titleInput.value = "";
+    titleInput.required = true;
     dateInput.value = "";
+    dateInput.required = true;
     summaryInput.value = "";
+    summaryInput.required = true;
     newPostDialog.showModal();
 
     /*Change return value on confirm button
@@ -77,19 +80,17 @@ function createBlogPost(){
      */
     cancelBtn.addEventListener('click', ()=>{
         titleInput.required = false;
-        dateInput.required = false; 
+        dateInput.required = false;
+        summaryInput.required = false;
     });
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     confirmBtn.addEventListener('click', () => {
-        if(titleInput.value !== "" && dateInput.value !== "" && summaryInput.value !== "" ){
             let newPost = `<div style="display:inline"><h1>${titleInput.value}:</h1>
                        <p>${dateInput.value}</p>
                        <p>${summaryInput.value}</p>
                         </div>`;
             outputBox.innerHTML = `NEWPOST: ${newPost}.`;
-        }else{
-            window.alert("Please fill in information of the post or hit cancel to close the dialog box");
-        }
+
 
     });
 }
