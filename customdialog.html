@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Dialog Example</title>
+    <!--Custom Dialog Module -->
+    <script type="module">
+        import * as customDialog from './customdialog.js';
+        document.addEventListener('DOMContentLoaded', (event) => {
+            customdialog.();
+        });
+    </script>
+</head>
+<body>
+    <main>
+        <h1> Custom Dialogs</h1>
+        <section id="button-box">
+            <button id="custom-alert-button">Alert</button>
+            <button id="custom-confirm-button">Confirm</button>
+            <button id="custom-prompt-button">Prompt</button>
+        </section>
+        <section id="custom-main-display">
+            <output></output>
+        </section>
+    </main>
+</body>
+</html>
