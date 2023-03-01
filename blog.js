@@ -127,6 +127,7 @@ function createBlogPost(){
 
 function deleteBlogPost(thisObj){
     console.log(thisObj);
+    console.log(this);
     let posts = localStorage.getObj("posts");
     posts.splice(this.id.slice(-1));
     document.getElementById(`post-${this.id.slice(-1)}`).display = "none";
