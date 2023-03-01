@@ -69,7 +69,7 @@ function createBlogPost(){
     newPostDialog.addEventListener('close', () => {
 
         let newPost = `<h1>${titleInput.value}:</h1><p>hello</p>`;
-        outputBox.value = `ReturnValue: ${newPost}.`;
+        outputBox.innerHTML = `ReturnValue: ${newPost}.`;
     });
 }
 function deleteBlogPost(){
