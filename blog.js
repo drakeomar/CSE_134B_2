@@ -54,7 +54,7 @@ function populateWithBlogs(posts){
 }
 
 function createBlogPost(){
-    let newPost = `<h1> str</h1>`;
+
     const newPostDialog = document.getElementById('new-post-dialog');
     const titleInput = document.getElementById('title-input');
     const confirmBtn = document.getElementById('confirmBtn');
@@ -67,7 +67,9 @@ function createBlogPost(){
     });
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     newPostDialog.addEventListener('close', () => {
-        outputBox.value = `ReturnValue: ${newPostDialog.returnValue}.`;
+
+        let newPost = `<h1>${titleInput.value}:</h1><p>hello</p>`;
+        outputBox.value = `ReturnValue: ${newPost}.`;
     });
 }
 function deleteBlogPost(){
