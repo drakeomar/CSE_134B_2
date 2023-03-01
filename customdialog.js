@@ -1,5 +1,4 @@
 export function customdialog() {
-    alert(`Hello, ${user}!`);
     let testStr =
         `<dialog id="favDialog">
         <form method="dialog">
