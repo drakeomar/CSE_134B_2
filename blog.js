@@ -62,6 +62,7 @@ function createBlogPost(){
     const confirmBtn = document.getElementById('confirmBtn');
     const cancelBtn = document.getElementById('cancel-button');
     const outputBox = document.getElementById('output-box');
+    let newPost = "";
 
     /**clear inputs and show dialog for new post*/
     titleInput.value = "";
@@ -85,12 +86,13 @@ function createBlogPost(){
     });
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     confirmBtn.addEventListener('click', () => {
-        if(titleInput.value !== "" && dateInput.value !== "" && summaryInput.value !== "" ){
+        newPostDialog.addEventListener('close', () => {
+            if(titleInput.value !== "" && dateInput.value !== "" && summaryInput.value !== "" ){
 
-            //increment count of posts
-            localStorage.setObj("count", localStorage.getObj("count")+1);
+                //increment count of posts
+                localStorage.setObj("count", localStorage.getObj("count")+1);
 
-            let newPost = `
+                newPost = `
                         <div style="display:flex; border:solid black 1px">
                             <div id="post-${localStorage.getObj("count")-1}" style="display:inline">
                                 <h1>${titleInput.value}:</h1>
@@ -99,8 +101,10 @@ function createBlogPost(){
                             </div>
                         </div>
                         `;
-            outputBox.innerHTML += newPost;
-        }
+                outputBox.innerHTML += newPost;
+            }
+        });
+
     });
 }
 
