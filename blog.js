@@ -75,8 +75,8 @@ function blogMain(){
                                 <h1>${titleInput.value}:</h1>
                                 <p>${dateInput.value}</p>
                                 <p>${summaryInput.value}</p>
-                                <button id="edit-button-${localStorage.getObj("count")-1}">Edit</button>
-                                <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
+                                <button id="edit-button-${localStorage.getObj("count")-1}" onclick="updateBlogPost()">Edit</button>
+                                <button id="delete-button-${localStorage.getObj("count")-1}" onclick="deleteBlogPost()">Delete</button>
                             </div>
                         </div>
                         `;
@@ -124,6 +124,10 @@ function createBlogPost(){
 }
 
 function deleteBlogPost(){
+
+    let posts = localStorage.getObj("posts");
+    posts.splice(this.id.slice(-1));
+    document.getElementById(`post-${this.id.slice(-1)}`).display = "none";
     //decrement count of posts
     localStorage.setObj("count", localStorage.getObj("count")-1);
 }
