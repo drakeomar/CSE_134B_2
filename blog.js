@@ -59,12 +59,16 @@ function createBlogPost(){
     const titleInput = document.getElementById('title-input');
     const confirmBtn = document.getElementById('confirmBtn');
     const outputBox = document.getElementById('output-box');
+
+    /*show dialog for new post*/
     newPostDialog.showModal();
 
-// "Favorite animal" input sets the value of the submit button
+    /*Change return value on confirm button
     titleInput.addEventListener('change', (e) => {
         confirmBtn.value = titleInput.value;
     });
+
+     */
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     newPostDialog.addEventListener('close', () => {
 
