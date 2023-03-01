@@ -30,7 +30,7 @@ function confirmDialog(){
     return 0;
 }
 function confirmConfirm(){
-    document.querySelector('dialog').style.display = 'none'; 
+    document.querySelector('dialog').style.display = 'none';
 }
 function promptDialog(){
     return 0;
