@@ -60,6 +60,7 @@ function createBlogPost(){
     const dateInput = document.getElementById('date-input');
     const summaryInput = document.getElementById('summary-text');
     const confirmBtn = document.getElementById('confirmBtn');
+    const cancelBtn = document.getElementById('cancel-button');
     const outputBox = document.getElementById('output-box');
 
     /**clear inputs and show dialog for new post*/
@@ -74,6 +75,10 @@ function createBlogPost(){
     });
 
      */
+    cancelBtn.addEventListener('click', ()=>{
+        titleInput.required = false;
+        dateInput.required = false; 
+    });
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     confirmBtn.addEventListener('click', () => {
         if(titleInput.value !== "" && dateInput.value !== "" && summaryInput.value !== "" ){
