@@ -6,8 +6,24 @@ function blogMain(){
     Storage.prototype.getObj = function(key) {
         return JSON.parse(this.getItem(key))
     }
-    localStorage.setObj(`test`, `1`)
+    if (localStorage.getItem("count") === null) {
+        localStorage.setObj('count', 0);
+    }
+
+    localStorage.setObj(`post${localStorage.getObj}`, `1`)
     console.log(localStorage.getObj(`test`))
+
+    if (localStorage.getItem("posts") === null) {
+        let posts = new Array(24);
+        localStorage.setObj('posts', posts);
+    }else{
+        let posts = localStorage.getObj(`posts`);
+    }
+    populateWithBlogs();
+}
+
+function populateWithBlogs(){
+
 }
 function createBlogPost(){
 
