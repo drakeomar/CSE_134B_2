@@ -15,7 +15,7 @@ function customdialogMain() {
     </p>
     <div>
       <button value="cancel">Cancel</button>
-      <button id="confirmBtn" value="default" onclick="">Confirm</button>
+      <button id="confirmBtn" value="default" onclick="confirmConfirm()">Confirm</button>
     </div>
   </form>
 </dialog>`;
@@ -24,10 +24,13 @@ function customdialogMain() {
 }
 
 function alertDialog(){
-    return 0; 
+    return 0;
 }
 function confirmDialog(){
     return 0;
+}
+function confirmConfirm(){
+    document.querySelector('dialog').style.display = 'none'; 
 }
 function promptDialog(){
     return 0;
