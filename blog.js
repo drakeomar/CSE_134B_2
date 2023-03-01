@@ -26,7 +26,7 @@ function blogMain(){
     }
 
     localStorage.setObj('count', 0);
-    
+
     /**TESTING LOCALSTORAGE**
     localStorage.setObj(`post${localStorage.getObj}`, `1`)
     console.log(localStorage.getObj(`test`));
@@ -46,6 +46,41 @@ function blogMain(){
     }else{
         posts = localStorage.getObj(`posts`);
     }
+    const newPostDialog = document.getElementById('new-post-dialog');
+    const titleInput = document.getElementById('title-input');
+    const dateInput = document.getElementById('date-input');
+    const summaryInput = document.getElementById('summary-text');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const cancelBtn = document.getElementById('cancel-button');
+    const outputBox = document.getElementById('output-box');
+    
+    cancelBtn.addEventListener('click', ()=>{
+        titleInput.required = false;
+        dateInput.required = false;
+        summaryInput.required = false;
+    });
+// "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
+    confirmBtn.addEventListener('click', () => {
+        newPostDialog.addEventListener('close', () => {
+            if(titleInput.value !== "" && dateInput.value !== "" && summaryInput.value !== "" ){
+
+                //increment count of posts
+                localStorage.setObj("count", localStorage.getObj("count")+1);
+
+                newPost = `
+                        <div style="display:flex; border:solid black 1px">
+                            <div id="post-${localStorage.getObj("count")-1}" style="display:inline">
+                                <h1>${titleInput.value}:</h1>
+                                <p>${dateInput.value}</p>
+                                <p>${summaryInput.value}</p>
+                            </div>
+                        </div>
+                        `;
+                outputBox.innerHTML += newPost;
+            }
+        });
+
+    });
     populateWithBlogs(posts);
 }
 
@@ -81,33 +116,7 @@ function createBlogPost(){
     });
 
      */
-    cancelBtn.addEventListener('click', ()=>{
-        titleInput.required = false;
-        dateInput.required = false;
-        summaryInput.required = false;
-    });
-// "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
-    confirmBtn.addEventListener('click', () => {
-        newPostDialog.addEventListener('close', () => {
-            if(titleInput.value !== "" && dateInput.value !== "" && summaryInput.value !== "" ){
 
-                //increment count of posts
-                localStorage.setObj("count", localStorage.getObj("count")+1);
-
-                newPost = `
-                        <div style="display:flex; border:solid black 1px">
-                            <div id="post-${localStorage.getObj("count")-1}" style="display:inline">
-                                <h1>${titleInput.value}:</h1>
-                                <p>${dateInput.value}</p>
-                                <p>${summaryInput.value}</p>
-                            </div>
-                        </div>
-                        `;
-                outputBox.innerHTML += newPost;
-            }
-        });
-
-    });
 }
 
 function deleteBlogPost(){
