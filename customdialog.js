@@ -15,7 +15,7 @@ function customdialogMain() {
     </p>
     <div>
       <button value="cancel">Cancel</button>
-      <button id="confirmBtn" value="default" onclick="confirmConfirm()">Confirm</button>
+      <button id="confirmBtn" value="default">Confirm</button>
     </div>
   </form>
 </dialog>`;
