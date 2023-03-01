@@ -63,7 +63,6 @@ function blogMain(){
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     confirmBtn.addEventListener('click', () => {
 
-        newPostDialog.addEventListener('close', () => {
 
             if(titleInput.value && dateInput.value && summaryInput.value ){
 
@@ -81,7 +80,6 @@ function blogMain(){
                         `;
                 outputBox.innerHTML += newPost;
             }
-        });
 
     });
     populateWithBlogs(posts);
