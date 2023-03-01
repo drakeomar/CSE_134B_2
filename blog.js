@@ -29,7 +29,9 @@ function blogMain(){
     localStorage.setObj(`post${localStorage.getObj}`, `1`)
     console.log(localStorage.getObj(`test`));
     */
-
+    document.getElementById('add-post').addEventListener('click', () => {
+        createBlogPost();
+    });
 
     /** Check if posts variable exists in localStorage, handle it**/
     if (localStorage.getItem("posts") === null) {
