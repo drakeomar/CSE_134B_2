@@ -6,24 +6,28 @@
     <script type="text/javascript" src="./purify.min.js"></script>
     <script type="module">
         import * as cd from './customdialog.js';
-        document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('DOMContentLoaded', () => {
             cd.customdialogMain();
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
+        let clean = DOMPurify.sanitize(`<p>HELLLLLLO</p>`);
+        document.getElementsByTagName("output")[0].innerHTML = clean;
+        document.getElementById('output-box').innerHTML = clean;
+
+        document.addEventListener('DOMContentLoaded', () => {
             //the event occurred
             let alertButton = document.getElementById('alert-button');
             let confirmButton = document.getElementById('confirm-button');
             let promptButton = document.getElementById('prompt-button');
             let saferPromptButton = document.getElementById('safer-prompt-button');
 
-            alertButton.addEventListener("click", alertFunction);
+            alertButton.addEventListener("onclick", alertFunction);
             confirmButton.addEventListener("click", confirmFunction);
             promptButton.addEventListener("click", promptFunction);
             saferPromptButton.addEventListener("click", saferPromptFunction);
 
-            const output = myTag`That ${person} is a ${age}.`;
+            //const output = myTag`That ${person} is a ${age}.`;
             function alertFunction() {
                 window.alert("TEST");
             }
@@ -75,7 +79,7 @@
             <button id="safer-prompt-button">Safer Prompt</button>
         </section>
         <section id="main-display">
-            <output></output>
+            <output id="output-box"></output>
         </section>
     </main>
 
