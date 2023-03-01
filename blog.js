@@ -74,23 +74,33 @@ function blogMain(){
                 localStorage.setObj("count", localStorage.getObj("count")+1);
 
                 newPost = `
-                        <div style="display:flex; border:solid black 1px">
-                            <div id="post-${localStorage.getObj("count")-1}" style="display:inline">
-                                <h1>${titleInput.value}:</h1>
-                                <p>${dateInput.value}</p>
+                        <section id="post-${localStorage.getObj("count")-1}" style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
+                        border:solid black 1px;margin: 2rem; border-radius: 2rem">
+                            <div style="display:flex; flex-direction:column">
+                                <div style="display: flex; flex-direction:row">
+                                    <h2>${titleInput.value}:</h2>
+                                    <p>${dateInput.value}</p>
+                                </div>
+
                                 <p>${summaryInput.value}</p>
-                                <button id="edit-button-${localStorage.getObj("count")-1}" onclick="updateBlogPost()">Edit</button>
-                                <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
+                                
                             </div>
-                        </div>
+                            <button id="edit-button-${localStorage.getObj("count")-1}" onclick="updateBlogPost()">Edit</button>
+                            <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
+                        </section>
                         `;
                 outputBox.innerHTML += newPost;
+
+                /** handle click events with correct functions for buttons*/
                 document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).onclick = () =>{
                     deleteBlogPost(this);
                 };
                 document.getElementById(`edit-button-${localStorage.getObj("count")-1}`).onclick = () =>{
                     updateBlogPost(this);
                 };
+
+                /**update posts in local storage*/
+                posts.push()
             }
 
     });
@@ -130,8 +140,7 @@ function createBlogPost(){
     });
 
      */
-    /**update posts in local storage*/
-    posts.push()
+
 
 }
 
