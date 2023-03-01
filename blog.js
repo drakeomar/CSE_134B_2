@@ -76,12 +76,14 @@ function blogMain(){
                                 <p>${dateInput.value}</p>
                                 <p>${summaryInput.value}</p>
                                 <button id="edit-button-${localStorage.getObj("count")-1}" onclick="updateBlogPost()">Edit</button>
-                                <button id="delete-button-${localStorage.getObj("count")-1}" onclick="deleteBlogPost()">Delete</button>
+                                <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
                             </div>
                         </div>
                         `;
                 outputBox.innerHTML += newPost;
-
+                document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).addEventListener('click', ()=>{
+                    deleteBlogPost();
+                });
             }
 
     });
