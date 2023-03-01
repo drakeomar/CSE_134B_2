@@ -62,6 +62,7 @@ function blogMain(){
     let newPost = "";
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     confirmBtn.addEventListener('click', () => {
+        newPostDialog.close();
         newPostDialog.addEventListener('close', () => {
 
             if(titleInput.value !== "" && dateInput.value !== "" && summaryInput.value !== "" ){
@@ -110,7 +111,7 @@ function createBlogPost(){
     dateInput.required = true;
     summaryInput.value = "";
     summaryInput.required = true;
-    newPostDialog.showModal();
+    newPostDialog.show();
 
     /*Change return value on confirm button
     titleInput.addEventListener('change', (e) => {
