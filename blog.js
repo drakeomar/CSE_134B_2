@@ -99,8 +99,13 @@ function blogMain(){
                     updateBlogPost(this);
                 };
 
+                let newPostArray = new Array();
+
                 /**update posts in local storage*/
-                posts.push()
+                newPostArray.push(titleInput.value);
+                newPostArray.push(dateInput.value);
+                newPostArray.push(summaryInput.value);
+                posts.push(newPostArray);
             }
 
     });
@@ -119,11 +124,13 @@ function createBlogPost(){
     const titleInput = document.getElementById('title-input');
     const dateInput = document.getElementById('date-input');
     const summaryInput = document.getElementById('summary-text');
+    /*
     const confirmBtn = document.getElementById('confirmBtn');
     const cancelBtn = document.getElementById('cancel-button');
     const outputBox = document.getElementById('output-box');
     let newPost = "";
     let posts = localStorage.getObj("posts");
+    */
 
     /**clear inputs and show dialog for new post*/
     titleInput.value = "";
