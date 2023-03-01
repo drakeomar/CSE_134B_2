@@ -11,9 +11,49 @@
         });
     </script>
     <script>
-        let clean = DOMPurify.sanitize(`<p>HELLLLLLO</p>`);
+        //let clean = DOMPurify.sanitize(`<p>HELLLLLLO</p>`);
         document.getElementsByTagName("output")[0].innerHTML = clean;
         document.getElementById('output-box').innerHTML = clean;
+
+
+        //const output = myTag`That ${person} is a ${age}.`;
+        function alertFunction() {
+            window.alert("TEST");
+        }
+
+        function confirmFunction() {
+            let confirmBool = window.confirm("TEST?");
+            if(confirmBool){
+
+            }
+        }
+
+        function promptFunction() {
+            window.prompt("HELLO WORLD");
+        }
+
+        function saferPromptFunction() {
+
+        }
+
+        function myTag(strings, personExp, ageExp) {
+            const str0 = strings[0]; // "That "
+            const str1 = strings[1]; // " is a "
+            const str2 = strings[2]; // "."
+
+            const ageStr = ageExp > 99 ? "centenarian" : "youngster";
+
+            // We can even return a string built using a template literal
+            return `${str0}${personExp}${str1}${ageStr}${str2}`;
+        }
+
+
+
+        function myTag(strings, msg){
+            strings[0] = `The user`;
+            strings[0] = msg;
+        }
+
 
         document.addEventListener('DOMContentLoaded', () => {
             //the event occurred
@@ -22,48 +62,15 @@
             let promptButton = document.getElementById('prompt-button');
             let saferPromptButton = document.getElementById('safer-prompt-button');
 
+            alertButton.addEventListener('click', () => {
+                alertFunction();
+            });
+
             alertButton.addEventListener("onclick", alertFunction);
             confirmButton.addEventListener("click", confirmFunction);
             promptButton.addEventListener("click", promptFunction);
             saferPromptButton.addEventListener("click", saferPromptFunction);
 
-            //const output = myTag`That ${person} is a ${age}.`;
-            function alertFunction() {
-                window.alert("TEST");
-            }
-
-            function confirmFunction() {
-                let confirmBool = window.confirm("TEST?");
-                if(confirmBool){
-
-                }
-            }
-
-            function promptFunction() {
-                window.prompt("HELLO WORLD");
-            }
-
-            function saferPromptFunction() {
-
-            }
-
-            function myTag(strings, personExp, ageExp) {
-                const str0 = strings[0]; // "That "
-                const str1 = strings[1]; // " is a "
-                const str2 = strings[2]; // "."
-
-                const ageStr = ageExp > 99 ? "centenarian" : "youngster";
-
-                // We can even return a string built using a template literal
-                return `${str0}${personExp}${str1}${ageStr}${str2}`;
-            }
-
-
-
-            function myTag(strings, msg){
-                strings[0] = `The user`;
-                strings[0] = msg;
-            }
         })
 
     </script>
