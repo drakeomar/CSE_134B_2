@@ -53,15 +53,17 @@ function blogMain(){
     const confirmBtn = document.getElementById('confirmBtn');
     const cancelBtn = document.getElementById('cancel-button');
     const outputBox = document.getElementById('output-box');
-    
+
     cancelBtn.addEventListener('click', ()=>{
         titleInput.required = false;
         dateInput.required = false;
         summaryInput.required = false;
     });
+    let newPost = "";
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     confirmBtn.addEventListener('click', () => {
         newPostDialog.addEventListener('close', () => {
+
             if(titleInput.value !== "" && dateInput.value !== "" && summaryInput.value !== "" ){
 
                 //increment count of posts
