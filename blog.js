@@ -75,6 +75,8 @@ function blogMain(){
                                 <h1>${titleInput.value}:</h1>
                                 <p>${dateInput.value}</p>
                                 <p>${summaryInput.value}</p>
+                                <button class="edit-button">Edit</button>
+                                <button class="delete-button">Delete</button>
                             </div>
                         </div>
                         `;
