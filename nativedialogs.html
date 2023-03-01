@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Native Browser Dialogs Example</title>
-    <script type="module" src="customdialog.js">
-        //import * as CustomDialog from './customdialog.js';
+    <script type="module">
+        import * as cd from './customdialog.js';
         document.addEventListener('DOMContentLoaded', (event) => {
-            customdialogMain();
-
+            cd.customdialogMain();
         });
     </script>
     <script>
