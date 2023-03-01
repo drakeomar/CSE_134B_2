@@ -89,14 +89,17 @@ function createBlogPost(){
 
             //increment count of posts
             localStorage.setObj("count", localStorage.getObj("count")+1);
-            
-            outputBox.style.display = "flex";
-            outputBox.style.border = "solid black 1px";
-            let newPost = `<div id="post-${localStorage.getObj("count")}" style="display:inline"><h1>${titleInput.value}:</h1>
-                       <p>${dateInput.value}</p>
-                       <p>${summaryInput.value}</p>
-                        </div>`;
-            outputBox.innerHTML = `NEWPOST: ${newPost}.`;
+
+            let newPost = `
+                        <div style="display:flex; border:solid black 1px">
+                            <div id="post-${localStorage.getObj("count")-1}" style="display:inline">
+                                <h1>${titleInput.value}:</h1>
+                                <p>${dateInput.value}</p>
+                                <p>${summaryInput.value}</p>
+                            </div>
+                        </div>
+                        `;
+            outputBox.innerHTML += newPost;
         }
     });
 }
