@@ -88,10 +88,7 @@ function createBlogPost(){
 
     });
 }
-function isValidPost(){
-    if()
-    return true;
-}
+
 function deleteBlogPost(){
 
 }
