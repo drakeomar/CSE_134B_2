@@ -63,7 +63,7 @@ function createBlogPost(){
 
 // "Favorite animal" input sets the value of the submit button
     titleInput.addEventListener('change', (e) => {
-        confirmBtn.value = selectEl.value;
+        confirmBtn.value = titleInput.value;
     });
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     newPostDialog.addEventListener('close', () => {
