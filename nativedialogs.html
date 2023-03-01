@@ -39,8 +39,10 @@
     </script>
     <script type="module">
         import {customdialog} from './customdialog.js';
+        document.addEventListener('DOMContentLoaded', (event) => {
+            customdialog();
+        });
 
-        customdialog();
     </script>
 </head>
 <body>
