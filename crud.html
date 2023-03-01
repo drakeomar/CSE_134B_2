@@ -5,7 +5,11 @@
     <title>CRUD Blog Example</title>
     <script type="module">
         import * as blogPost from './blog.js';
-        blogPost.blogMain();
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            blogPost.blogMain();
+        });
+
     </script>
 </head>
 <body>
@@ -13,18 +17,23 @@
     <h1>CRUD Blog</h1>
     <main>
         <section id="posts-section">
-            <button id="add-post" onclick="document.getElementById('favDialog').showModal()">Add New Post</button>
-            <dialog id="favDialog">
+            <button id="add-post" onclick="blogPost.createBlogPost()">Add New Post</button>
+            <dialog id="new-post-dialog">
                 <form method="dialog">
                     <p>
-                        <label>Favorite animal:
-                            <select>
-                                <option value="default">Choose…</option>
-                                <option>Brine shrimp</option>
-                                <option>Red panda</option>
-                                <option>Spider monkey</option>
-                            </select>
+                        <label>Title:</label>
+                        <input type="text" name="post-title" id="title-input">
+                    </p>
+                    <p>
+                        <label>Date:</label>
+                    </p>
+                    <p>
+                        <label>Summary:
+
                         </label>
+                        <textarea>
+
+                        </textarea>
                     </p>
                     <div>
                         <button value="cancel">Cancel</button>
@@ -35,7 +44,7 @@
             <p>
                 <button id="showDialog">Show the dialog</button>
             </p>
-            <output></output>
+            <output id="output-box"></output>
         </section>
     </main>
     <footer></footer>

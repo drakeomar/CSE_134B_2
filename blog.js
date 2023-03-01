@@ -52,7 +52,21 @@ function populateWithBlogs(posts){
 }
 
 function createBlogPost(){
-    let newPost = `<h1> str</h1>`
+    let newPost = `<h1> str</h1>`;
+    const newPostDialog = document.getElementById('new-post-dialog');
+    const titleInput = document.getElementById('title-input');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const outputBox = document.getElementById('output-box');
+    newPostDialog.showModal();
+
+// "Favorite animal" input sets the value of the submit button
+    titleInput.addEventListener('change', (e) => {
+        confirmBtn.value = selectEl.value;
+    });
+// "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
+    newPostDialog.addEventListener('close', () => {
+        outputBox.value = `ReturnValue: ${newPostDialog.returnValue}.`;
+    });
 }
 function deleteBlogPost(){
 
