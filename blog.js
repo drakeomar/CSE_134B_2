@@ -76,7 +76,7 @@ function createBlogPost(){
      */
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     confirmBtn.addEventListener('click', () => {
-        if(titleInput.value != "" && dateInput.value != "" && summaryInput.value != "" ){
+        if(titleInput.value !== "" && dateInput.value !== "" && summaryInput.value !== "" ){
             let newPost = `<div style="display:inline"><h1>${titleInput.value}:</h1>
                        <p>${dateInput.value}</p>
                        <p>${summaryInput.value}</p>
