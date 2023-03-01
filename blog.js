@@ -59,12 +59,16 @@ function blogMain(){
         dateInput.required = false;
         summaryInput.required = false;
     });
+
     let newPost = "";
-// "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
+    //listen for click of confirm button, and check if input is filled in,
+    // if whitespace only, then dialoag will close as required will be satisifed
+    // in the form inputs, but it will not make a new post, as the inputs are trimmed
+    // for excess whitespace in the if statement check
     confirmBtn.addEventListener('click', () => {
 
 
-            if(titleInput.value && dateInput.value && summaryInput.value ){
+            if(titleInput.value.trim() && dateInput.value.trim() && summaryInput.value.trim() ){
 
                 //increment count of posts
                 localStorage.setObj("count", localStorage.getObj("count")+1);
@@ -83,6 +87,9 @@ function blogMain(){
                 outputBox.innerHTML += newPost;
                 document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).onclick = () =>{
                     deleteBlogPost(this);
+                };
+                document.getElementById(`edit-button-${localStorage.getObj("count")-1}`).onclick = () =>{
+                    updateBlogPost(this);
                 };
             }
 
@@ -106,6 +113,7 @@ function createBlogPost(){
     const cancelBtn = document.getElementById('cancel-button');
     const outputBox = document.getElementById('output-box');
     let newPost = "";
+    let posts = localStorage.getObj("posts");
 
     /**clear inputs and show dialog for new post*/
     titleInput.value = "";
@@ -122,6 +130,8 @@ function createBlogPost(){
     });
 
      */
+    /**update posts in local storage*/
+    posts.push()
 
 }
 
@@ -135,6 +145,18 @@ function deleteBlogPost(thisObj){
     localStorage.setObj("count", localStorage.getObj("count")-1);
 }
 function updateBlogPost(){
+    let posts = localStorage.getObj("posts");
+    let postNumber = event.srcElement.id.slice(-1);
+
+    /**assign corresponding inputs and show dialog for updating post*/
+    titleInput.value = "";
+    titleInput.required = true;
+    dateInput.value = "";
+    dateInput.required = true;
+    summaryInput.value = "";
+    summaryInput.required = true;
+    newPostDialog.show();
+
 
 }
 export {blogMain, createBlogPost, deleteBlogPost, updateBlogPost}
