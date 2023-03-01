@@ -18,5 +18,5 @@ export function customdialog() {
     </div>
   </form>
 </dialog>`;
-    document.getElementById('main-display').innerHTML = testStr;
+    document.getElementById('main-display').setHTML(testStr,new Sanitizer());
 }
