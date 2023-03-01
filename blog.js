@@ -62,10 +62,10 @@ function blogMain(){
     let newPost = "";
 // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
     confirmBtn.addEventListener('click', () => {
-        newPostDialog.close();
+
         newPostDialog.addEventListener('close', () => {
 
-            if(titleInput.value !== "" && dateInput.value !== "" && summaryInput.value !== "" ){
+            if(titleInput.value && dateInput.value && summaryInput.value ){
 
                 //increment count of posts
                 localStorage.setObj("count", localStorage.getObj("count")+1);
