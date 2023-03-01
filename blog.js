@@ -129,8 +129,8 @@ function deleteBlogPost(thisObj){
     console.log(event.srcElement.id);
     console.log(this);
     let posts = localStorage.getObj("posts");
-    posts.splice(this.id.slice(-1));
-    document.getElementById(`post-${this.id.slice(-1)}`).display = "none";
+    posts.splice(event.srcElement.id.slice(-1));
+    document.getElementById(`post-${event.srcElement.id.slice(-1)}`).display = "none";
     //decrement count of posts
     localStorage.setObj("count", localStorage.getObj("count")-1);
 }
