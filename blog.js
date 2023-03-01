@@ -25,6 +25,8 @@ function blogMain(){
         localStorage.setObj('count', 0);
     }
 
+    localStorage.setObj('count', 0);
+    
     /**TESTING LOCALSTORAGE**
     localStorage.setObj(`post${localStorage.getObj}`, `1`)
     console.log(localStorage.getObj(`test`));
