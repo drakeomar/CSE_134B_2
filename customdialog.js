@@ -1,6 +1,6 @@
 export function customdialog() {
     let testStr =
-        `<dialog id="favDialog">
+        `<dialog style="display: block" id="favDialog">
         <form method="dialog">
         <p>
         <label>Favorite animal:
