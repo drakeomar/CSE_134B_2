@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>Custom Dialog Example</title>
     <!--Custom Dialog Module -->
-    <script type="module" src="customdialog.js">
-        //import * as CustomDialog from './customdialog.js';
-        document.addEventListener('DOMContentLoaded', (event) => {
-            customdialogMain();
+    <script type="module">
+        import * as CustomDialog from './customdialog.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("TESTING");
+            CustomDialog.customdialogMain();
 
         });
     </script>
@@ -20,7 +21,19 @@
             <button id="custom-confirm-button">Confirm</button>
             <button id="custom-prompt-button">Prompt</button>
         </section>
-        <dialog id="cs-dialog"></dialog>
+        <dialog id="custom-alert-dialog">
+            <form method="dialog">
+                <h2> ALERT! </h2>
+                <p>
+                    You are getting an URGENT MESSAGE!!
+                </p>
+                <div>
+                    <button id="cs-cancel" value="cancel">Cancel</button>
+                    <button id="cs-confirm" value="default">Confirm</button>
+                </div>
+            </form>
+        </dialog>
+
         <section id="custom-main-display">
             <output id="cs-output"></output>
         </section>

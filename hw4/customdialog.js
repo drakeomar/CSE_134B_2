@@ -4,9 +4,9 @@ function customdialogMain() {
     const alertBtn = document.getElementById('custom-alert-button');
     const confirmBtn = document.getElementById('custom-confirm-button');
     const promptBtn = document.getElementById('custom-prompt-button');
-
+    const dialogBox = document.getElementById("custom-alert-dialog");
     let testStr =
-        `<dialog style="display: block" id="csDialog">
+        `<dialog id="csDialog">
             <form method="dialog">
                 <p>
                     <label>What is your name?</label>
@@ -19,16 +19,18 @@ function customdialogMain() {
             </form>
         </dialog>`;
 
-    /**listners*/
-    alertBtn.addEventListener('click', () => {
-        alertDialog(outputBox);
-    });
-    confirmBtn.addEventListener('click', () => {
-        confirmDialog(outputBox);
-    });
-    promptBtn.addEventListener('click', () => {
-        promptDialog(outputBox);
-    });
+        /**listeners*/
+        alertBtn.addEventListener('click', () => {
+            alertDialog(outputBox);
+        });
+        confirmBtn.addEventListener('click', () => {
+            confirmDialog(outputBox);
+        });
+        promptBtn.addEventListener('click', () => {
+            promptDialog(outputBox);
+        });
+
+
 
     //document.getElementById('main-display').setHTML(testStr,new Sanitizer());
 }
@@ -48,28 +50,29 @@ function alertDialog(outputBox){
             </form>
         </dialog>`;
 
-    bindButtons(outputBox);
+    let dialogBox = document.getElementById("custom-alert-dialog");
+    dialogBox.show();
+    bindButtons();
     return 0;
 }
 function confirmDialog(outputBox){
     let testStr =
-        `<dialog id="custom-confirm-dialog" style="display: block" id="csConfirmDialog">
-            <form method="dialog">
+        `
+   <form method="dialog">
                 <h2>Do you confirm to the terms and conditions?</h2>
                 <div>
                     <button value="cancel">Cancel</button>
                     <button id="cs-confirm" value="default">Confirm</button>
                 </div>
-            </form>
-        </dialog>`;
+            </form>`;
 
-    document.getElementById('cs-output').innerHTML = testStr;
-    document.getElementById('custom-confirm-dialog').show();
+    document.getElementById('cs-dialog').innerHTML = testStr;
+    document.getElementById('custom-alert-dialog').show();
     return 0;
 }
 function promptDialog(outputBox){
     let testStr =
-        `<dialog style="display: block" id="csPromptDialog">
+        `<dialog id="custom-prompt-dialog">
             <form method="dialog">
                 <p>
                     <label>What is your name?</label>
