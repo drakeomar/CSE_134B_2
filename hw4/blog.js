@@ -15,9 +15,10 @@ Storage.prototype.getObj = function(key) {
     return JSON.parse(this.getItem(key))
 }
 function makeDummyPosts(){
-    return [["New JS Framework", "01/20/2023","summary"],["Using Bootstrap for Responsive Design", "02/23/2020","summary"],[],[]]
+    return [["New JS Framework", "01/20/2023","summary"],["Using Bootstrap for Responsive Design", "02/23/2020","summary"],["Hacking 101: Port Sniffing", "2023/20/2", "The basics and fundamentals of networking, ports, and common tools."],[]]
 }
 
+/**DOM ELEMENTS*/
 const titleInput = document.getElementById('title-input');
 const dateInput = document.getElementById('date-input');
 const summaryInput = document.getElementById('summary-text');
@@ -41,20 +42,25 @@ function blogMain(){
     localStorage.setObj(`post${localStorage.getObj}`, `1`)
     console.log(localStorage.getObj(`test`));
     */
+
     document.getElementById('add-post').addEventListener('click', () => {
         createBlogPost();
     });
 
     /** Check if posts variable exists in localStorage, handle it**/
-    if (localStorage.getItem("posts") === null) {
+    /*if (localStorage.getItem("posts") === null) {
         posts = makeDummyPosts();
         localStorage.setObj('posts', posts);
     }else{
         posts = localStorage.getObj(`posts`);
-    }
+    }*/
+
+    posts = makeDummyPosts();
+    localStorage.setObj('posts', posts);
+
     const newPostDialog = document.getElementById('new-post-dialog');
 
-
+    /** if user cancels their new post, then set all required input to not required and allow dialog to close*/
     cancelBtn.addEventListener('click', ()=>{
         titleInput.required = false;
         dateInput.required = false;
@@ -134,7 +140,40 @@ function blogMain(){
 
 function populateWithBlogs(posts){
     for(let i = 0; i < posts.length; i++){
+        console.log(posts[i]);
+        let title = posts[i][0];
+        let date = posts[i][1];
+        let summary = posts[i][2];
 
+        localStorage.setObj("count", localStorage.getObj("count")+1);
+
+        let csPost = `
+                        <li id="post-${localStorage.getObj("count")-1}"> 
+                        <div style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
+                        border:solid black 1px;margin: 1rem; border-radius: 2rem">
+                            
+                                <div style="display: flex; flex-direction:row">
+                                    <h2>${title} </h2>
+                                    <p>posted ${date} </p>
+                                </div>
+
+                                <p>${summary}</p>
+                                
+                            
+                            <button id="edit-button-${localStorage.getObj("count")-1}" onclick="updateBlogPost()">Edit</button>
+                            <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
+                            </div>
+                        </li>
+                        `;
+
+        document.getElementById("post-list").innerHTML += csPost;
+
+        document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).addEventListener('click',  () =>{
+            deleteBlogPost();
+        };
+        document.getElementById(`edit-button-${localStorage.getObj("count")-1}`).onclick = () =>{
+            updateBlogPost(this);
+        };
     }
 }
 
@@ -171,9 +210,9 @@ function createBlogPost(){
 
 }
 
-function deleteBlogPost(thisObj){
-    console.log(event.srcElement.id);
-    console.log(this);
+function deleteBlogPost(){
+    //console.log(event.srcElement.id);
+    //console.log(this);
     let posts = localStorage.getObj("posts");
     posts.splice(event.srcElement.id.slice(-1));
     document.getElementById(`post-${event.srcElement.id.slice(-1)}`).style.display = "none";
