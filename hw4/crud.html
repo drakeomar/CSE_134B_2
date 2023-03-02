@@ -43,6 +43,31 @@
                     </div>
                 </form>
             </dialog>
+            <dialog id="update-post-dialog">
+                <form method="dialog">
+                    <p>
+                        <label for="update-title-input">Title:</label>
+                        <input type="text" name="update-title-input" id="update-title-input" required>
+                    </p>
+                    <p>
+                        <label for="update-date-input">Date:</label>
+                        <input type="date" name="update-date-input" id="update-date-input" required>
+                    </p>
+                    <p>
+                        <label>Summary:
+
+                        </label>
+                        <textarea id="update-summary-text" name="update-summary-text">
+
+                        </textarea>
+                    </p>
+                    <input id="update-post-number" value="0" hidden>
+                    <div>
+                        <button id="update-cancel-button" value="cancel">Cancel</button>
+                        <button id="update-confirmBtn" value="default">Confirm</button>
+                    </div>
+                </form>
+            </dialog>
             <output id="output-box">
                 <ul id="post-list">
 

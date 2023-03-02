@@ -15,7 +15,7 @@ Storage.prototype.getObj = function(key) {
     return JSON.parse(this.getItem(key))
 }
 function makeDummyPosts(){
-    return [["New JS Framework", "01/20/2023","summary"],["Using Bootstrap for Responsive Design", "02/23/2020","summary"],["Hacking 101: Port Sniffing", "2023/20/2", "The basics and fundamentals of networking, ports, and common tools."],[]]
+    return [["New JS Framework", "2023/01/02","summary"],["Using Bootstrap for Responsive Design", "02/23/2020","summary"],["Hacking 101: Port Sniffing", "2023/20/2", "The basics and fundamentals of networking, ports, and common tools."],[]]
 }
 
 /**DOM ELEMENTS*/
@@ -72,6 +72,16 @@ function blogMain(){
     // if whitespace only, then dialoag will close as required will be satisifed
     // in the form inputs, but it will not make a new post, as the inputs are trimmed
     // for excess whitespace in the if statement check
+    document.getElementById('update-confirmBtn').addEventListener('click', ()=>{
+        let postNumber = document.getElementById('update-post-number').value;
+        console.log("POSTNUMBER");
+        console.log(postNumber);
+        document.getElementById(`post-title-${postNumber}`).innerHTML = document.getElementById('update-title-input').value;
+        document.getElementById(`post-date-${postNumber}`).textContent = document.getElementById('update-date-input').value;
+        document.getElementById(`post-summary-${postNumber}`).textContent = document.getElementById('update-summary-text').value;
+
+    });
+
     confirmBtn.addEventListener('click', () => {
 
 
@@ -85,11 +95,11 @@ function blogMain(){
                         border:solid black 1px;margin: 1rem; border-radius: 2rem">
                             
                                 <div style="display: flex; flex-direction:row">
-                                    <h2>${titleInput.value} </h2>
-                                    <p>posted ${dateInput.value} </p>
+                                    <h2 id="post-title-${localStorage.getObj("count")-1}">${titleInput.value} </h2>
+                                    <p id="post-date-${localStorage.getObj("count")-1}">posted ${dateInput.value} </p>
                                 </div>
 
-                                <p>${summaryInput.value}</p>
+                                <p id="post-summary-${localStorage.getObj("count")-1}">${summaryInput.value}</p>
                                 
                             
                             <button id="edit-button-${localStorage.getObj("count")-1}" onclick="updateBlogPost()">Edit</button>
@@ -117,11 +127,21 @@ function blogMain(){
 
                 /** handle click events with correct functions for buttons*/
                 document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).onclick = () =>{
-                    deleteBlogPost(this);
+                    deleteBlogPost();
                 };
                 document.getElementById(`edit-button-${localStorage.getObj("count")-1}`).onclick = () =>{
-                    updateBlogPost(this);
+                    updateBlogPost();
                 };
+
+                let deleteButtons = document.getElementsByClassName('delete-buttons');
+                for(let j = 0; j < deleteButtons.length; j++){
+                    deleteButtons[j].addEventListener('click', () => deleteBlogPost());
+                }
+
+                let editButtons = document.getElementsByClassName('edit-buttons');
+                for(let j = 0; j < editButtons.length; j++){
+                    editButtons[j].addEventListener('click', () => updateBlogPost());
+                }
 
                 let newPostArray = new Array();
 
@@ -153,27 +173,38 @@ function populateWithBlogs(posts){
                         border:solid black 1px;margin: 1rem; border-radius: 2rem">
                             
                                 <div style="display: flex; flex-direction:row">
-                                    <h2>${title} </h2>
-                                    <p>posted ${date} </p>
+                                    <h2 id="post-title-${localStorage.getObj("count")-1}">${title} </h2>
+                                    <p id="post-date-${localStorage.getObj("count")-1}">posted ${date} </p>
                                 </div>
 
-                                <p>${summary}</p>
+                                <p id="post-summary-${localStorage.getObj("count")-1}">${summary}</p>
                                 
                             
-                            <button id="edit-button-${localStorage.getObj("count")-1}" onclick="updateBlogPost()">Edit</button>
-                            <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
+                            <button class="edit-buttons" id="edit-button-${localStorage.getObj("count")-1}">Edit</button>
+                            <button class="delete-buttons" id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
                             </div>
                         </li>
                         `;
 
         document.getElementById("post-list").innerHTML += csPost;
 
-        document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).addEventListener('click',  () =>{
+        /**document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).addEventListener('click',  () =>{
             deleteBlogPost();
-        };
+        });*/
+
+        console.log(localStorage.getObj("count")-1)
         document.getElementById(`edit-button-${localStorage.getObj("count")-1}`).onclick = () =>{
-            updateBlogPost(this);
+            updateBlogPost();
         };
+    }
+    let deleteButtons = document.getElementsByClassName('delete-buttons');
+    for(let j = 0; j < deleteButtons.length; j++){
+        deleteButtons[j].addEventListener('click', () => deleteBlogPost());
+    }
+
+    let editButtons = document.getElementsByClassName('edit-buttons');
+    for(let j = 0; j < editButtons.length; j++){
+        editButtons[j].addEventListener('click', () => updateBlogPost());
     }
 }
 
@@ -199,39 +230,32 @@ function createBlogPost(){
     summaryInput.value = "";
     summaryInput.required = true;
     newPostDialog.show();
-
-    /*Change return value on confirm button
-    titleInput.addEventListener('change', (e) => {
-        confirmBtn.value = titleInput.value;
-    });
-
-     */
-
-
 }
 
 function deleteBlogPost(){
-    //console.log(event.srcElement.id);
-    //console.log(this);
+
     let posts = localStorage.getObj("posts");
     posts.splice(event.srcElement.id.slice(-1));
     document.getElementById(`post-${event.srcElement.id.slice(-1)}`).style.display = "none";
+
     //decrement count of posts
     localStorage.setObj("count", localStorage.getObj("count")-1);
 }
 function updateBlogPost(){
+    const updatePostDialog = document.getElementById('update-post-dialog');
     let posts = localStorage.getObj("posts");
     let postNumber = event.srcElement.id.slice(-1);
 
     /**assign corresponding inputs and show dialog for updating post*/
-    titleInput.value = "";
-    titleInput.required = true;
-    dateInput.value = "";
-    dateInput.required = true;
-    summaryInput.value = "";
-    summaryInput.required = true;
-    newPostDialog.show();
+    document.getElementById('update-title-input').value = posts[postNumber][0];
+    document.getElementById('update-title-input').required = true;
+    document.getElementById('update-date-input').value = posts[postNumber][1];
+    document.getElementById('update-date-input').required = true;
+    document.getElementById('update-summary-text').value = posts[postNumber][2];
+    document.getElementById('update-summary-text').required = true;
+    document.getElementById('update-post-number').value = postNumber;
 
+    updatePostDialog.show();
 
 }
 export {blogMain, createBlogPost, deleteBlogPost, updateBlogPost}
