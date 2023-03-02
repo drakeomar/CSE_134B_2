@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Native Browser Dialogs Example</title>
-    <script type="text/javascript" src="./purify.min.js"></script>
+    <style>
+        #output-box{
+            border: solid black 2px;
+            border-radius: 1rem;
+        }
+    </style>
+    <script type="text/javascript" src="dist/purify.min.js"></script>
     <script type="module">
         import * as cd from './customdialog.js';
         document.addEventListener('DOMContentLoaded', () => {
@@ -11,32 +17,54 @@
         });
     </script>
     <script>
-        //let clean = DOMPurify.sanitize(`<p>HELLLLLLO</p>`);
+        let clean = DOMPurify.sanitize(`<img src=x onerror=alert(1)>`, { USE_PROFILES: { html: true } });
+        console.log(clean);
         //document.getElementsByTagName("output")[0].innerHTML = clean;
-        //document.getElementById('output-box').innerHTML = clean;
 
 
-        //const output = myTag`That ${person} is a ${age}.`;
+        function cleanUp(strings, name) {
+            const str0 = strings[0];
+            const str1 = strings[1];
+            const str2 = strings[2];
+
+            let cleanUserInput = DOMPurify.sanitize(`${str0}${name}${str1}${name}${str2}`, { USE_PROFILES: { html: true } });
+
+            return cleanUserInput;
+        }
         function alertFunction() {
             window.alert("TEST");
         }
 
         function confirmFunction() {
-            let confirmBool = window.confirm("TEST?");
+            let confirmBool = window.confirm("Do you Confirm?");
             if(confirmBool){
-
+                document.getElementById("output-box").innerHTML = `<p>User Confirmed YES </p>`;
+            }else{
+                document.getElementById("output-box").innerHTML = `<p>User Did Not Confirm, User selected CANCEL </p>`;
             }
         }
 
         function promptFunction() {
-            window.prompt("HELLO WORLD");
+            let personName = window.prompt("What is your name?");
+            if(!personName.trim() == ""){
+                document.getElementById("output-box").innerHTML = `<p>Welcome ${personName}!</p>
+                                                                   <p>This website aims to provide cool features for users like you, ${personName}</p>`;
+            }else{
+                document.getElementById("output-box").innerHTML = `<p>User Confirmed NO </p>`;
+            }
         }
 
         function saferPromptFunction() {
-
+            let personName = window.prompt("HELLO WORLD");
+            if(!personName.trim() == ""){
+                document.getElementById("output-box").innerHTML = cleanUp`<p>Welcome ${personName}!</p>
+                                                                   <p>This website aims to provide cool features for users like you, ${personName}</p>`;
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            let display = document.getElementById('main-display');
+            display.innerHTML += clean;
             //the event occurred
             let alertButton = document.getElementById('alert-button');
             let confirmButton = document.getElementById('confirm-button');
@@ -46,20 +74,15 @@
             alertButton.addEventListener('click', () => {
                 alertFunction();
             });
-            alertButton.addEventListener('click', () => {
-                alertFunction();
+            confirmButton.addEventListener('click', () => {
+                confirmFunction();
             });
-            alertButton.addEventListener('click', () => {
-                alertFunction();
+            promptButton.addEventListener('click', () => {
+                promptFunction();
             });
-            alertButton.addEventListener('click', () => {
-                alertFunction();
+            saferPromptButton.addEventListener('click', () => {
+                saferPromptFunction();
             });
-            alertButton.addEventListener("onclick", alertFunction);
-            confirmButton.addEventListener("click", confirmFunction);
-            promptButton.addEventListener("click", promptFunction);
-            saferPromptButton.addEventListener("click", saferPromptFunction);
-
         })
 
     </script>
