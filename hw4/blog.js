@@ -75,11 +75,12 @@ function blogMain(){
                 localStorage.setObj("count", localStorage.getObj("count")+1);
                 let csPost = `
                         <li id="post-${localStorage.getObj("count")-1}"> 
-                        <div style="display:flex; flex-direction: row; justify-content: space-around; align-items: center;>
+                        <div style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
+                        border:solid black 1px;margin: 1rem; border-radius: 2rem">
                             
                                 <div style="display: flex; flex-direction:row">
-                                    <h2>${titleInput.value} - </h2>
-                                    <p>${dateInput.value} - </p>
+                                    <h2>${titleInput.value} </h2>
+                                    <p>posted ${dateInput.value} </p>
                                 </div>
 
                                 <p>${summaryInput.value}</p>
