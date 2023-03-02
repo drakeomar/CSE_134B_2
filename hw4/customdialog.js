@@ -37,7 +37,7 @@ function customdialogMain() {
 
 function alertDialog(outputBox){
     let testStr =
-        `<dialog id="custom-alert-dialog" style="display: block" id="csAlertDialog">
+        `
             <form method="dialog">
                 <h2> ALERT! </h2>
                 <p>
@@ -48,9 +48,10 @@ function alertDialog(outputBox){
                     <button id="cs-confirm" value="default">Confirm</button>
                 </div>
             </form>
-        </dialog>`;
+        `;
 
     let dialogBox = document.getElementById("custom-alert-dialog");
+    dialogBox.innerHTML = testStr;
     dialogBox.show();
     bindButtons();
     return 0;
