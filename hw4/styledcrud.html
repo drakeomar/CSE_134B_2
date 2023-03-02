@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK32BCTRW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KSK32BCTRW');
+    </script>
     <meta charset="UTF-8">
     <title>CRUD Blog Example</title>
     <script type="module">
-        import * as blogPost from './blog.js';
+        import {blogMain} from './styledblog.js';
 
         document.addEventListener('DOMContentLoaded', (event) => {
-            blogPost.blogMain();
+            blogMain();
         });
 
     </script>

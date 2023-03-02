@@ -22,6 +22,9 @@ function makeDummyPosts(){
 const titleInput = document.getElementById('title-input');
 const dateInput = document.getElementById('date-input');
 const summaryInput = document.getElementById('summary-text');
+const updateTitleInput = document.getElementById('update-title-input');
+const updateDateInput = document.getElementById('update-date-input');
+const updateSummaryInput = document.getElementById('update-summary-text');
 const confirmBtn = document.getElementById('confirmBtn');
 const cancelBtn = document.getElementById('cancel-button');
 const outputBox = document.getElementById('output-box');
@@ -47,14 +50,6 @@ function blogMain(){
         createBlogPost();
     });
 
-    /** Check if posts variable exists in localStorage, handle it**/
-    /*if (localStorage.getItem("posts") === null) {
-        posts = makeDummyPosts();
-        localStorage.setObj('posts', posts);
-    }else{
-        posts = localStorage.getObj(`posts`);
-    }*/
-
     posts = makeDummyPosts();
     localStorage.setObj('posts', posts);
 
@@ -73,12 +68,17 @@ function blogMain(){
     // in the form inputs, but it will not make a new post, as the inputs are trimmed
     // for excess whitespace in the if statement check
     document.getElementById('update-confirmBtn').addEventListener('click', ()=>{
+
         let postNumber = document.getElementById('update-post-number').value;
         console.log("POSTNUMBER");
         console.log(postNumber);
-        document.getElementById(`post-title-${postNumber}`).innerHTML = document.getElementById('update-title-input').value;
-        document.getElementById(`post-date-${postNumber}`).textContent = document.getElementById('update-date-input').value;
-        document.getElementById(`post-summary-${postNumber}`).textContent = document.getElementById('update-summary-text').value;
+
+        if(updateTitleInput.value.trim() && updateDateInput.value.trim() && updateSummaryInput.value.trim()){
+            document.getElementById(`post-title-${postNumber}`).innerHTML = updateTitleInput.value;
+            document.getElementById(`post-date-${postNumber}`).textContent = updateDateInput.value;
+            document.getElementById(`post-summary-${postNumber}`).textContent = updateSummaryInput.value;
+        }
+
 
     });
 
@@ -133,15 +133,7 @@ function blogMain(){
                     updateBlogPost();
                 };
 
-                let deleteButtons = document.getElementsByClassName('delete-buttons');
-                for(let j = 0; j < deleteButtons.length; j++){
-                    deleteButtons[j].addEventListener('click', () => deleteBlogPost());
-                }
-
-                let editButtons = document.getElementsByClassName('edit-buttons');
-                for(let j = 0; j < editButtons.length; j++){
-                    editButtons[j].addEventListener('click', () => updateBlogPost());
-                }
+                bindDummyButtons();
 
                 let newPostArray = new Array();
 
@@ -187,16 +179,12 @@ function populateWithBlogs(posts){
                         `;
 
         document.getElementById("post-list").innerHTML += csPost;
-
-        /**document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).addEventListener('click',  () =>{
-            deleteBlogPost();
-        });*/
-
-        console.log(localStorage.getObj("count")-1)
-        document.getElementById(`edit-button-${localStorage.getObj("count")-1}`).onclick = () =>{
-            updateBlogPost();
-        };
     }
+    bindDummyButtons();
+
+}
+
+function bindDummyButtons(){
     let deleteButtons = document.getElementsByClassName('delete-buttons');
     for(let j = 0; j < deleteButtons.length; j++){
         deleteButtons[j].addEventListener('click', () => deleteBlogPost());
