@@ -15,8 +15,16 @@ Storage.prototype.getObj = function(key) {
     return JSON.parse(this.getItem(key))
 }
 function makeDummyPosts(){
-    return [[],[],[],[]]
+    return [["New JS Framework", "01/20/2023","summary"],["Using Bootstrap for Responsive Design", "02/23/2020","summary"],[],[]]
 }
+
+const titleInput = document.getElementById('title-input');
+const dateInput = document.getElementById('date-input');
+const summaryInput = document.getElementById('summary-text');
+const confirmBtn = document.getElementById('confirmBtn');
+const cancelBtn = document.getElementById('cancel-button');
+const outputBox = document.getElementById('output-box');
+
 /**blogMain
  *
  */
@@ -45,12 +53,7 @@ function blogMain(){
         posts = localStorage.getObj(`posts`);
     }
     const newPostDialog = document.getElementById('new-post-dialog');
-    const titleInput = document.getElementById('title-input');
-    const dateInput = document.getElementById('date-input');
-    const summaryInput = document.getElementById('summary-text');
-    const confirmBtn = document.getElementById('confirmBtn');
-    const cancelBtn = document.getElementById('cancel-button');
-    const outputBox = document.getElementById('output-box');
+
 
     cancelBtn.addEventListener('click', ()=>{
         titleInput.required = false;
@@ -70,7 +73,23 @@ function blogMain(){
 
                 //increment count of posts
                 localStorage.setObj("count", localStorage.getObj("count")+1);
+                let csPost = `
+                        <li id="post-${localStorage.getObj("count")-1}"> 
+                        <div style="display:flex; flex-direction: row; justify-content: space-around; align-items: center;>
+                            
+                                <div style="display: flex; flex-direction:row">
+                                    <h2>${titleInput.value} - </h2>
+                                    <p>${dateInput.value} - </p>
+                                </div>
 
+                                <p>${summaryInput.value}</p>
+                                
+                            
+                            <button id="edit-button-${localStorage.getObj("count")-1}" onclick="updateBlogPost()">Edit</button>
+                            <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
+                            </div>
+                        </li>
+                        `;
                 newPost = `
                         <section id="post-${localStorage.getObj("count")-1}" style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
                         border:solid black 1px;margin: 2rem; border-radius: 2rem">
@@ -83,11 +102,11 @@ function blogMain(){
                                 <p>${summaryInput.value}</p>
                                 
                             </div>
-                            <button id="edit-button-${localStorage.getObj("count")-1}" onclick="updateBlogPost()">Edit</button>
+                            <button id="edit-button-${localStorage.getObj("count")-1}">Edit</button>
                             <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
                         </section>
                         `;
-                outputBox.innerHTML += newPost;
+                document.getElementById("post-list").innerHTML += csPost;
 
                 /** handle click events with correct functions for buttons*/
                 document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).onclick = () =>{

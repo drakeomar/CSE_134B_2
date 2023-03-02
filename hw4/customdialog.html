@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Custom Dialog Example</title>
+    <script type="text/javascript" src="dist/purify.min.js"></script>
     <!--Custom Dialog Module -->
     <script type="module">
         import * as CustomDialog from './customdialog.js';
@@ -22,16 +23,7 @@
             <button id="custom-prompt-button">Prompt</button>
         </section>
         <dialog id="custom-alert-dialog">
-            <form method="dialog">
-                <h2> ALERT! </h2>
-                <p>
-                    You are getting an URGENT MESSAGE!!
-                </p>
-                <div>
-                    <button id="cs-cancel" value="cancel">Cancel</button>
-                    <button id="cs-confirm" value="default">Confirm</button>
-                </div>
-            </form>
+
         </dialog>
 
         <section id="custom-main-display">
