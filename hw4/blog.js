@@ -110,6 +110,10 @@ function blogMain(){
     });
 
     posts = localStorage.getObj('posts');
+
+    if (localStorage.getItem("count") === null) {
+        localStorage.setObj('posts', []);
+    }
     if(posts.length == 0){
         posts = makeDummyPosts();
     }
