@@ -114,7 +114,7 @@ function blogMain(){
     if (localStorage.getItem("count") === null) {
         localStorage.setObj('posts', []);
     }
-    if(posts.length == 0){
+    if(posts.length === 0){
         posts = makeDummyPosts();
     }
 
@@ -139,6 +139,7 @@ function blogMain(){
 
         //decrement count of posts
         localStorage.setObj("count", localStorage.getObj("count")-1);
+        localStorage.setObj("posts", posts);
     });
 
     //listen for click of confirm button, and check if input is filled in,
