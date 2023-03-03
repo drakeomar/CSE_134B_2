@@ -31,6 +31,7 @@
 
             return cleanUserInput;
         }
+
         function alertFunction() {
             window.alert("You are being alerted with an URGENT MESSAGE!");
         }
@@ -76,6 +77,7 @@
             }
         }
 
+        /**sanitize user inputs*/
         function saferPromptFunction() {
             const outputBox = document.getElementById('output-box');
             let personName = window.prompt("What is your name?");

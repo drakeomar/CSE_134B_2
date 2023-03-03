@@ -13,6 +13,8 @@ For the website changes (markup, style, content):
 
 For the third party libraries: 
 
+    I downloaded fullPage.js and Anime.js, and the rest are pulled externally. 
+
     Google Analytics: Tracks user and traffic activity
     link: 
 
