@@ -33,11 +33,12 @@
             return cleanUserInput;
         }
         function alertFunction() {
-            window.alert("TEST");
+            window.alert("You are being alerted with an URGENT MESSAGE!");
         }
 
         function confirmFunction() {
             let confirmBool = window.confirm("Do you Confirm?");
+            document.getElementById("output-box").border = "double black 2px";
             if(confirmBool){
                 document.getElementById("output-box").innerHTML = `<p>User Confirmed YES </p>`;
             }else{

@@ -1,3 +1,9 @@
+/**
+ * Sanitize user inputs for the prompt dialog
+ * @param strings
+ * @param name
+ * @returns {*}
+ */
 function customCleanUp(strings, name){
     const str0 = strings[0];
     const str1 = strings[1];
@@ -17,19 +23,22 @@ function customdialogMain() {
 
         /**listeners*/
         alertBtn.addEventListener('click', () => {
-            alertDialog(outputBox);
+            outputBox.style.display = "none";
+            alertDialog();
         });
         confirmBtn.addEventListener('click', () => {
-            confirmDialog(outputBox);
+            outputBox.style.display = "none";
+            confirmDialog();
         });
         promptBtn.addEventListener('click', () => {
-            promptDialog(outputBox);
+            outputBox.style.display = "none";
+            promptDialog();
         });
 
     //document.getElementById('main-display').setHTML(testStr,new Sanitizer());
 }
 
-function alertDialog(outputBox){
+function alertDialog(){
     let dialogStr =
         ` <form method="dialog">
                 <h2> ALERT! </h2>
@@ -37,8 +46,7 @@ function alertDialog(outputBox){
                    You are getting an URGENT MESSAGE!!
                 </p>
                 <div>
-                    <button id="cs-cancel" value="cancel">Cancel</button>
-                    <button id="cs-confirm" value="default">Confirm</button>
+                    <button id="cs-confirm" value="default">OK</button>
                 </div>
             </form>
         `;
@@ -48,21 +56,10 @@ function alertDialog(outputBox){
     //let dialogBox = document.getElementById("custom-alert-dialog");
     dialogBox.innerHTML = dialogStr;
 
-    const confirmBtn = document.getElementById('cs-confirm');
-    const cancelBtn = document.getElementById('cs-cancel');
-
-    confirmBtn.addEventListener('click', () => {
-        outputBox.innerHTML = "The User was alerted";
-    });
-    cancelBtn.addEventListener('click', () => {
-        outputBox.innerHTML = "The User did not confirm";
-    });
-
     dialogBox.show();
-    bindButtons();
     return 0;
 }
-function confirmDialog(outputBox){
+function confirmDialog(){
     let dialogStr =
         `<form method="dialog">
                 <h2>Do you confirm to the terms and conditions?</h2>
@@ -79,10 +76,12 @@ function confirmDialog(outputBox){
     const cancelBtn = document.getElementById('cs-cancel');
 
     confirmBtn.addEventListener('click', () => {
-        outputBox.innerHTML = `<p>User Confirmed YES </p>`;
+        outputBox.innerHTML = `<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>User Confirmed YES </p></div>`;
+        outputBox.style.display = "inline-block";
     });
     cancelBtn.addEventListener('click', () => {
-        outputBox.innerHTML = `<p>User Did Not Confirm, User selected CANCEL </p>`;
+        outputBox.innerHTML = `<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>User Did Not Confirm, User selected CANCEL </p></div>`;
+        outputBox.style.display = "inline-block";
     });
 
     dialogBox.show();
@@ -110,11 +109,11 @@ function promptDialog(){
 
     confirmBtn.addEventListener('click', () => {
         let personName = document.getElementById("name-input").value;
-        outputBox.innerHTML = customCleanUp`<p>Welcome ${personName}!</p>
-                               <p>This website aims to provide cool features for users like you, ${personName}</p>`;
+        outputBox.innerHTML = customCleanUp`<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>Welcome ${personName}!</p>
+                               <p>This website aims to provide cool features for users like you, ${personName}</p></div>`;
     });
     cancelBtn.addEventListener('click', () => {
-        outputBox.innerHTML = `<p>User Confirmed NO </p>`;
+        outputBox.innerHTML = `<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>User Confirmed NO </p></div>`;
     });
 
     dialogBox.show();
