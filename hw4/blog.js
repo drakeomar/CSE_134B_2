@@ -109,8 +109,11 @@ function blogMain(){
         createBlogPost();
     });
 
+    posts = localStorage.getObj('posts');
+    if(posts.length == 0){
+        posts = makeDummyPosts();
+    }
 
-    posts = makeDummyPosts();
     localStorage.setObj('posts', posts);
 
     const newPostDialog = document.getElementById('new-post-dialog');
