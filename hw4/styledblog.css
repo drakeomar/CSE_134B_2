@@ -87,6 +87,10 @@ h1, h2, h3{
 #add-post{
     border-radius: 1rem;
     border: solid var(--accent-color) 3px;
+    border-bottom-color: var(--accent-color);
+    border-right-color: var(--accent-color);
+    border-top-color: rgb(181, 83, 83);
+    border-left-color: rgb(181, 83, 83);
     background-color: var(--highlight-color);
     color: #1A1A1D;
     padding: 1rem;
@@ -97,10 +101,20 @@ hr{
     border-width: 3px;
 }
 
-#new-post-dialog, #update-post-dialog{
+#new-post-dialog, #update-post-dialog, #delete-post-dialog{
     border-radius: 1rem;
     background-color: var(--highlight-color);
     color: var(--accent-color)
+}
+
+.dialog-button{
+    background-color: var(--primary-text-color);
+    color: var(--accent-color);
+    border-radius: 1rem;
+    border-bottom-color: var(--line-color);
+    border-right-color: var(--line-color);
+    border-top-color: rgb(181, 83, 83);
+    border-left-color: rgb(181, 83, 83);
 }
 
 

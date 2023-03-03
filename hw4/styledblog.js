@@ -74,18 +74,14 @@ function updateBlogPost(){
     updatePostDialog.show();
 
 }
-/**
- * delete the associated blog post from localStorage and the display
- *
- */
 function deleteBlogPost(){
+    let deleteDialog = document.getElementById('delete-post-dialog');
 
-    let posts = localStorage.getObj("posts");
-    posts.splice(event.srcElement.id.slice(-1));
-    document.getElementById(`post-${event.srcElement.id.slice(-1)}`).style.display = "none";
+    let postNumber = event.srcElement.id.slice(-1);
+    document.getElementById('delete-post-number').value = postNumber;
 
-    //decrement count of posts
-    localStorage.setObj("count", localStorage.getObj("count")-1);
+    deleteDialog.show();
+
 }
 
 /**blogMain
@@ -128,6 +124,18 @@ function blogMain(){
         updateSummaryInput.required = false;
     });
 
+    document.getElementById('delete-confirmBtn').addEventListener('click',()=>{
+
+        let posts = localStorage.getObj("posts");
+        let postNumber = document.getElementById('delete-post-number').value;
+        posts.splice(postNumber); //remove from localStorage
+
+        document.getElementById(`post-${postNumber}`).style.display = "none";
+
+        //decrement count of posts
+        localStorage.setObj("count", localStorage.getObj("count")-1);
+    });
+
     //listen for click of confirm button, and check if input is filled in,
     // if whitespace only, then dialoag will close as required will be satisifed
     // in the form inputs, but it will not make a new post, as the inputs are trimmed
@@ -154,25 +162,25 @@ function blogMain(){
 
             //increment count of posts
             localStorage.setObj("count", localStorage.getObj("count")+1);
-            let csPost = `
-                        <li id="post-${localStorage.getObj("count")-1}"> 
-                        <div style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
-                        border:solid black 1px;margin: 1rem; border-radius: 2rem">
-                            
+            let csPost = `  <div class="post" id="post-${localStorage.getObj("count")-1}" style="display:flex; flex-direction: row; 
+                        justify-content: space-around; align-items: center; 
+                        border:solid var(--highlight-color) 3px;margin: 1.5rem; border-radius: 2rem; padding:1rem;">
+                            <div style="display: flex; flex-direction: column">
                                 <div style="display: flex; flex-direction:row">
                                     <h2 id="post-title-${localStorage.getObj("count")-1}">${titleInput.value} </h2>
-                                    <p id="post-date-${localStorage.getObj("count")-1}">posted ${dateInput.value} </p>
+                                    <p id="post-date-${localStorage.getObj("count")-1}" style="padding:.5rem;">posted ${dateInput.value} </p>
                                 </div>
-
                                 <p id="post-summary-${localStorage.getObj("count")-1}">${summaryInput.value}</p>
-                                
-                            
-                            <button id="edit-button-${localStorage.getObj("count")-1}">Edit</button>
-                            <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
                             </div>
-                        </li>
+                            <div style="display:flex;flex-direction: row; justify-content: space-between; align-items: center;">
+                                <img class="edit-buttons" id="edit-button-${localStorage.getObj("count")-1}" src="/multimedia/img/pencil.png" 
+                                 style="width: 1rem;margin:1rem;"/>
+                                <img class="delete-buttons" id="delete-button-${localStorage.getObj("count")-1}" src="/multimedia/img/trashcan.png" 
+                                 style="width: 1rem; margin:1rem"/>
+                            </div>
+                        </div>
                         `;
-            document.getElementById("post-list").innerHTML += csPost;
+            outputBox.innerHTML += csPost;
 
             /** handle click events with correct functions for buttons*/
             document.getElementById(`delete-button-${localStorage.getObj("count")-1}`).onclick = () =>{
@@ -214,25 +222,22 @@ function populateWithBlogs(posts){
 
         localStorage.setObj("count", localStorage.getObj("count")+1);
 
-        let csPost = `  <div class="post" id="post-${localStorage.getObj("count")-1}" style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
+        let csPost = `  <div class="post" id="post-${localStorage.getObj("count")-1}" style="display:flex; flex-direction: row; 
+                        justify-content: space-around; align-items: center; 
                         border:solid var(--highlight-color) 3px;margin: 1.5rem; border-radius: 2rem; padding:1rem;">
                             <div style="display: flex; flex-direction: column">
                                 <div style="display: flex; flex-direction:row">
                                     <h2 id="post-title-${localStorage.getObj("count")-1}">${title} </h2>
                                     <p id="post-date-${localStorage.getObj("count")-1}" style="padding:.5rem;">posted ${date} </p>
                                 </div>
-
                                 <p id="post-summary-${localStorage.getObj("count")-1}">${summary}</p>
-                                
-                            
                             </div>
                             <div style="display:flex;flex-direction: row; justify-content: space-between; align-items: center;">
-                                <img class="edit-buttons" id="edit-button-${localStorage.getObj("count")-1}" src="/multimedia/img/pencil.png" style="width: 1rem;margin:1rem;"/>
-                                <img class="delete-buttons" id="delete-button-${localStorage.getObj("count")-1}" src="/multimedia/img/trashcan.png" style="width: 1rem; margin:1rem"/>
+                                <img class="edit-buttons" id="edit-button-${localStorage.getObj("count")-1}" src="/multimedia/img/pencil.png" 
+                                 style="width: 1rem;margin:1rem;"/>
+                                <img class="delete-buttons" id="delete-button-${localStorage.getObj("count")-1}" src="/multimedia/img/trashcan.png" 
+                                 style="width: 1rem; margin:1rem"/>
                             </div>
-                            
-                            
-                            
                         </div>
                         `;
 

@@ -49,9 +49,9 @@
                         </textarea>
                 </p>
                 <input id="post-number" value="0" hidden>
-                <div>
-                    <button id="cancel-button" value="cancel">Cancel</button>
-                    <button id="confirmBtn" value="default">Confirm</button>
+                <div style="display:flex;justify-content: space-around; align-items: center;flex-direction: row">
+                    <button class="dialog-button" id="cancel-button" value="cancel">Cancel</button>
+                    <button class="dialog-button" id="confirmBtn" value="default">Confirm</button>
                 </div>
             </form>
         </dialog>
@@ -75,10 +75,22 @@
                     </textarea>
                 </p>
                 <input id="update-post-number" value="0" hidden>
-                <div>
-                    <button id="update-cancel-button" value="cancel">Cancel</button>
-                    <button id="update-confirmBtn" value="default">Confirm</button>
+                <div style="display:flex;justify-content: space-around; align-items: center;flex-direction: row">
+                    <button class="dialog-button" id="update-cancel-button" value="cancel">Cancel</button>
+                    <button class="dialog-button" id="update-confirmBtn" value="default">Confirm</button>
                 </div>
+            </form>
+        </dialog>
+        <dialog id="delete-post-dialog">
+            <h2 style="text-align: center">Delete post?</h2>
+            <form method="dialog">
+                <p>Are you sure you want to delete this post?</p>
+                <input id="delete-post-number" value="0" hidden>
+                <div style="display:flex;justify-content: space-around; align-items: center;flex-direction: row">
+                    <button class="dialog-button" id="delete-cancel-button">Cancel</button>
+                    <button class="dialog-button" id="delete-confirmBtn">Yes</button>
+                </div>
+
             </form>
         </dialog>
         <output id="output-box">
