@@ -2,41 +2,41 @@ Part 1:
 
     HTML Page:
 
-    https://spectacular-fox-5cf6da.netlify.app/nativedialogs.html
+    https://spectacular-fox-5cf6da.netlify.app/hw4/nativedialogs.html
 
 Part 2:
 
     HTML Page:
 
-    https://spectacular-fox-5cf6da.netlify.app/customdialog.html
+    https://spectacular-fox-5cf6da.netlify.app/hw4/customdialog.html
 
     JS:
 
-    https://spectacular-fox-5cf6da.netlify.app/customdialog.js
+    https://spectacular-fox-5cf6da.netlify.app/hw4/customdialog.js
 
 Part 3:
 
     HTML Page:
 
-    https://spectacular-fox-5cf6da.netlify.app/crud.html
+    https://spectacular-fox-5cf6da.netlify.app/hw4/crud.html
 
     JS: 
 
-    https://spectacular-fox-5cf6da.netlify.app/blog.js
+    https://spectacular-fox-5cf6da.netlify.app/hw4/blog.js
 
 Part 4:
 
     HTML Page:
 
-    https://spectacular-fox-5cf6da.netlify.app/styledcrud.html
+    https://spectacular-fox-5cf6da.netlify.app/hw4/styledcrud.html
 
     CSS:
 
-    https://spectacular-fox-5cf6da.netlify.app/styledblog.html
+    https://spectacular-fox-5cf6da.netlify.app/hw4/styledblog.html
 
     JS: 
 
-    https://spectacular-fox-5cf6da.netlify.app/styledblog.js
+    https://spectacular-fox-5cf6da.netlify.app/hw4/styledblog.js
     
 
 Part 5:
