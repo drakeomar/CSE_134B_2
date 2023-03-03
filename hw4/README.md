@@ -7,6 +7,9 @@
 
     PUBLIC GITHUB: https://github.com/drakeomar/CSE_134B_2
 
+I would have liked to have made things a little bit cleaner/separated out a lot more of my code, but 
+I did the best with the time that we had. 
+
 Part 1:
         
     All of this part is contained within nativedialogs.html-- I simply included a script tag 
@@ -26,16 +29,27 @@ Part 1:
 
 Part 2:
 
-    For the custom dialog section, there is customdialog.html and customdialog.js. 
+    For the custom dialog section, there is customdialog.html and customdialog.js. I generated the dialog innerHTML
+        based upon whichever button was pressed, and then 
     
 Part 3:
+
+        crud.html is the main html page with blog.js associated with it. 
 
         For prepopulating the localStorage array and page with dummy posts, I simply initialized the
         array within localStorage storing all the posts with 4 generic blog postings.
         If this requirement did not exist, and/or if persistence across page loads was a requirement,
         then I would have simply populated the page with whatever exists in the array "posts"
         within localStorage.
+
+        I have functions correlating to delete, update, and create, (deleteBlogPost(), updateBlogPost(), createBlogPost()), 
+        whereupon event listeners attached to buttons drive the main interactivity of my page. The functions themselves
+        pretty much 
+
+        Each new post is indexed with id's for every significant element, incremented based off of a count variable 
+        stored in localStorage. 
 Part 4:
+
         styledcrud.html is the html file for the styled CRUD Blog page. I changed the color scheme, added
         fonts and styled up the posts and buttons-- fixing alignment/display, as well.
         A lot of the styling for this part is inlined within the styledblog.js filed itself and

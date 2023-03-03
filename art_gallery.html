@@ -15,10 +15,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
 
   <link href="main.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/js/fullPagejs/dist/fullpage.css" />
+  <script type="text/javascript" src="/js/fullPagejs/dist/fullpage.js"></script>
+
+  <style>
+    .section {
+      text-align:center;
+      font-size: 2em;
+
+
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 15ch}
+    }
+    h1 {
+      /** typing effect for non-mobile sized devices with screens*/
+      animation: typing 2.0s steps(20, end),
+      blinking 1s step-end infinite;
+    }
+  </style>
+  <!-- Anime -->
   <script type="module">
     import {main} from './myjs.js';
 
     main();
+  </script>
+
+  <!-- fullPage.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      new fullpage('#fullpage', {
+        scrollVertically: false
+      });
+    });
+
   </script>
 </head>
 <body>
@@ -49,16 +80,62 @@
           <a class="non-icon" href="/contact.html/"> <p> Contact </p> </a>
         </div>
       </nav>
+      <div style="display: flex;text-align:center;flex-direction: row;align-items:center; justify-content: center">
+        <h1 style="margin-top: 2rem;">Art Gallery</h1>
+      </div>
     </div>
+
   </header>
-  <h1>Art Gallery</h1>
-  <footer>
-    <p> Get in Contact with Me! </p>
-    <p> Access the <b><span class="highlight"> <a href="/contact.html"> Contact Page </a></span> </b></p>
-    <p> <em>OR..</em></p>
-    <p><b> Phone Number: </b></p> <a href="tel:+15015549898">501-554-9898</a>
-    <p><b> Email: </b></p> <a href="mailto:drakeomar@icloud.com"> drakeomar@icloud.com </a>
-  </footer>
+
+  <div id="fullpage" >
+
+
+    <div class="section">
+      <div class="slide" data-anchor="slide1">
+        <picture>
+          <source media="(max-width:480px)" srcset="/multimedia/img/art1-small.webp">
+          <source media="(max-width:760px)" srcset="/multimedia/img/art1-medium.webp">
+          <img src="/multimedia/img/art1-large.webp" alt="Geometrical Orca">
+
+        </picture>
+        <h2>Waves and Stripes</h2>
+      </div>
+      <div class="slide" data-anchor="slide2">
+        <picture>
+          <source media="(max-width:480px)" srcset="/multimedia/img/art2-small.webp">
+          <source media="(max-width:760px)" srcset="/multimedia/img/art2-medium.webp">
+          <img src="/multimedia/img/art2-large.webp" alt="Geometrical Orca">
+
+        </picture>
+        <h2>The Isms Collage</h2>
+      </div>
+      <div class="slide" data-anchor="slide3">
+        <picture>
+          <source media="(max-width:480px)" srcset="/multimedia/img/art3-small.webp">
+          <source media="(max-width:760px)" srcset="/multimedia/img/art3-medium.webp">
+          <img src="/multimedia/img/art3-large.webp" alt="Geometrical Orca">
+        </picture>
+        <h2>Blackfish Prism Break</h2>
+      </div>
+      <div class="slide" data-anchor="slide4">
+        <picture>
+          <source media="(max-width:480px)" srcset="/multimedia/img/art4-small.webp">
+          <source media="(max-width:760px)" srcset="/multimedia/img/art4-medium.webp">
+          <img src="/multimedia/img/art4-large.webp" alt="Geometrical Orca">
+        </picture>
+        <h2>Ascended Temptress</h2>
+      </div>
+      <div class="slide" data-anchor="slide5">
+        <picture>
+          <source media="(max-width:480px)" srcset="/multimedia/img/art5-small.webp">
+          <source media="(max-width:760px)" srcset="/multimedia/img/art5-medium.webp">
+          <img src="/multimedia/img/art5-large.webp" alt="Geometrical Orca">
+        </picture>
+        <h2>Surprise!</h2>
+      </div>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init();
