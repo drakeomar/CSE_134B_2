@@ -3,10 +3,14 @@
 
     PID: A15326724
 
-    NETLIFY LINK: 
+    NETLIFY LINK: https://spectacular-fox-5cf6da.netlify.app/
+
+    PUBLIC GITHUB: https://github.com/drakeomar/CSE_134B_2
 
 Part 1:
-
+        
+    All of this part is contained within nativedialogs.html-- I simply included a script tag 
+        with the appropriate script. 
     Prompt vs Safer Prompt: 
         The main difference between the two is the lack of DOM purification or 
         "sanitization" in the regular prompt displayed. This means that potentially
@@ -17,9 +21,12 @@ Part 1:
 
     For the tagged template literals, 
 
+    I utilized setTimeout in order to properly clear the output tag before displaying
+    the alert.
+
 Part 2:
 
-    For the custom dialog section, there is customdialog.html
+    For the custom dialog section, there is customdialog.html and customdialog.js. 
     
 Part 3:
 
@@ -37,9 +44,5 @@ Part 4:
 
 Part 5: 
 
-
-
-
-
-    I included the third party JS library Anime found at 
+    Information found in changelog.md: 
 

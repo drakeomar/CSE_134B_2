@@ -1,3 +1,9 @@
+const dialogBox = document.getElementById("custom-alert-dialog");
+const outputBox = document.getElementById('cs-output');
+const alertBtn = document.getElementById('custom-alert-button');
+const confirmBtn = document.getElementById('custom-confirm-button');
+const promptBtn = document.getElementById('custom-prompt-button');
+
 /**
  * Sanitize user inputs for the prompt dialog
  * @param strings
@@ -14,11 +20,6 @@ function customCleanUp(strings, name){
     return cleanUserInput;
 }
 
-const dialogBox = document.getElementById("custom-alert-dialog");
-const outputBox = document.getElementById('cs-output');
-const alertBtn = document.getElementById('custom-alert-button');
-const confirmBtn = document.getElementById('custom-confirm-button');
-const promptBtn = document.getElementById('custom-prompt-button');
 function customdialogMain() {
 
         /**listeners*/
@@ -56,6 +57,16 @@ function alertDialog(){
     //let dialogBox = document.getElementById("custom-alert-dialog");
     dialogBox.innerHTML = dialogStr;
 
+    const confirmBtn = document.getElementById('cs-confirm');
+    //const cancelBtn = document.getElementById('cs-cancel');
+
+    confirmBtn.addEventListener('click', () => {
+
+    });
+    //cancelBtn.addEventListener('click', () => {
+
+    //});
+
     dialogBox.show();
     return 0;
 }
@@ -76,11 +87,13 @@ function confirmDialog(){
     const cancelBtn = document.getElementById('cs-cancel');
 
     confirmBtn.addEventListener('click', () => {
-        outputBox.innerHTML = `<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>User Confirmed YES </p></div>`;
+        outputBox.innerHTML = `<div style="border: solid black 4px;
+                                        border-style:double;padding:1rem;"><p>Confirm Result: true </p></div>`;
         outputBox.style.display = "inline-block";
     });
     cancelBtn.addEventListener('click', () => {
-        outputBox.innerHTML = `<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>User Did Not Confirm, User selected CANCEL </p></div>`;
+        outputBox.innerHTML = `<div style="border: solid black 4px;
+                                        border-style:double;padding:1rem;"><p>Confirm Result: false </p></div>`;
         outputBox.style.display = "inline-block";
     });
 
@@ -92,7 +105,7 @@ function promptDialog(){
             <form method="dialog">
                 <p>
                     <label>What is your name?</label>
-                    <input id="name-input" type="text">
+                    <input id="name-input" type="text" required maxlength="30">
                 </p>
                 <div>
                     <button id="cs-cancel" value="cancel">Cancel</button>
@@ -109,11 +122,17 @@ function promptDialog(){
 
     confirmBtn.addEventListener('click', () => {
         let personName = document.getElementById("name-input").value;
-        outputBox.innerHTML = customCleanUp`<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>Welcome ${personName}!</p>
+        if(personName.trim()){
+            outputBox.innerHTML = customCleanUp`<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>Welcome ${personName}!</p>
                                <p>This website aims to provide cool features for users like you, ${personName}</p></div>`;
+            outputBox.style.display = "inline-block";
+        }
+
     });
     cancelBtn.addEventListener('click', () => {
-        outputBox.innerHTML = `<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>User Confirmed NO </p></div>`;
+        document.getElementById('name-input').required = false;
+        outputBox.innerHTML = `<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>User did not enter anything! </p></div>`;
+        outputBox.style.display = "inline-block";
     });
 
     dialogBox.show();
