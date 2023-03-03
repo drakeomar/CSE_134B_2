@@ -19,7 +19,7 @@ Part 1:
 
 Part 2:
 
-
+    For the custom dialog section, there is customdialog.html
     
 Part 3:
 
@@ -28,7 +28,12 @@ Part 3:
         If this requirement did not exist, and/or if persistence across page loads was a requirement,
         then I would have simply populated the page with whatever exists in the array "posts"
         within localStorage.
-Part 4: 
+Part 4:
+        styledcrud.html is the html file for the styled CRUD Blog page. I changed the color scheme, added
+        fonts and styled up the posts and buttons-- fixing alignment/display, as well.
+        A lot of the styling for this part is inlined within the styledblog.js filed itself and
+        then written onto styledcrud.html. However, there is also a styledblog.css file attached for certain 
+        responsibilities.
 
 Part 5: 
 

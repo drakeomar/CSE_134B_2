@@ -20,14 +20,17 @@
         });
 
     </script>
+    <link rel="stylesheet" href="styledblog.css">
 </head>
 <body>
 <header></header>
 <h1>CRUD Blog</h1>
+<hr>
 <main>
     <section id="posts-section">
 
         <dialog id="new-post-dialog">
+            <h2 style="text-align:center">Add a New Post</h2>
             <form method="dialog">
                 <p>
                     <label for="title-input">Title:</label>
@@ -53,6 +56,7 @@
             </form>
         </dialog>
         <dialog id="update-post-dialog">
+            <h2 style="text-align:center">Update a Post</h2>
             <form method="dialog">
                 <p>
                     <label for="update-title-input">Title:</label>
@@ -68,7 +72,7 @@
                     </label>
                     <textarea id="update-summary-text" name="update-summary-text">
 
-                        </textarea>
+                    </textarea>
                 </p>
                 <input id="update-post-number" value="0" hidden>
                 <div>
@@ -78,11 +82,12 @@
             </form>
         </dialog>
         <output id="output-box">
-            <ul id="post-list">
 
-            </ul>
         </output>
-        <button id="add-post">Add New Post</button>
+        <div id="bottom-button">
+            <button id="add-post">Add New Post</button>
+        </div>
+
     </section>
 </main>
 <footer></footer>

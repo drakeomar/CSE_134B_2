@@ -67,8 +67,40 @@ body{
 }
 h1{
     font-size: 2rem;
+    text-align: center;
 }
 
 h1, h2, h3{
     font-family: Sanchez;
 }
+
+.post{
+    color: var(--non-main-color);
+    background-color: var(--primary-text-color);
+}
+
+#bottom-button{
+    display: flex;
+    justify-content: center; align-items: center;
+}
+
+#add-post{
+    border-radius: 1rem;
+    border: solid var(--accent-color) 3px;
+    background-color: var(--highlight-color);
+    color: #1A1A1D;
+    padding: 1rem;
+}
+
+hr{
+    border-color: var(--accent-color);
+    border-width: 3px;
+}
+
+#new-post-dialog, #update-post-dialog{
+    border-radius: 1rem;
+    background-color: var(--highlight-color);
+    color: var(--accent-color)
+}
+
+

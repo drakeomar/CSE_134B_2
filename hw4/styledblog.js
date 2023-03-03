@@ -121,7 +121,13 @@ function blogMain(){
         summaryInput.required = false;
     });
 
-    let newPost = "";
+    /** if user cancels their update post, then set all required input to not required and allow dialog to close*/
+    document.getElementById('update-cancel-button').addEventListener('click', ()=>{
+        updateTitleInput.required = false;
+        updateDateInput.required = false;
+        updateSummaryInput.required = false;
+    });
+
     //listen for click of confirm button, and check if input is filled in,
     // if whitespace only, then dialoag will close as required will be satisifed
     // in the form inputs, but it will not make a new post, as the inputs are trimmed
@@ -194,7 +200,10 @@ function blogMain(){
 }
 
 function makeDummyPosts(){
-    return [["New JS Framework", "2023/01/02","summary"],["Using Bootstrap for Responsive Design", "02/23/2020","summary"],["Hacking 101: Port Sniffing", "2023/20/2", "The basics and fundamentals of networking, ports, and common tools."],[]]
+    return [["New JS Framework", "2023-01-02","This generic new framework/library will remedy all of your problems."],
+        ["Using Bootstrap for Responsive Design", "2020-02-23","This article provides details on a framework to help expedite web design."],
+        ["Hacking 101: Port Sniffing", "2023-02-02", "The basics and fundamentals of networking, ports, and common tools."],
+        ["Creating Art with Code", "2019-05-22", "Simple ways to animate using CSS and JavaScript in a Web Browser."]];
 }
 function populateWithBlogs(posts){
     for(let i = 0; i < posts.length; i++){
@@ -205,30 +214,29 @@ function populateWithBlogs(posts){
 
         localStorage.setObj("count", localStorage.getObj("count")+1);
 
-        let csPost = `
-                        <li id="post-${localStorage.getObj("count")-1}"> 
-                        <div style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
-                        border:solid black 1px;margin: 1rem; border-radius: 2rem">
-                            
+        let csPost = `  <div class="post" id="post-${localStorage.getObj("count")-1}" style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
+                        border:solid var(--highlight-color) 3px;margin: 1.5rem; border-radius: 2rem; padding:1rem;">
+                            <div style="display: flex; flex-direction: column">
                                 <div style="display: flex; flex-direction:row">
                                     <h2 id="post-title-${localStorage.getObj("count")-1}">${title} </h2>
-                                    <p id="post-date-${localStorage.getObj("count")-1}">posted ${date} </p>
+                                    <p id="post-date-${localStorage.getObj("count")-1}" style="padding:.5rem;">posted ${date} </p>
                                 </div>
 
                                 <p id="post-summary-${localStorage.getObj("count")-1}">${summary}</p>
                                 
-                            <div>
-                                <img class="edit-buttons" id="edit-button-${localStorage.getObj("count")-1}" src="/multimedia/img/pencil.png" style="width: 2rem"/>
-                                <img class="delete-buttons" id="delete-button-${localStorage.getObj("count")-1}" src="/multimedia/img/trashcan.png" style="width: 2rem"/>
-                            </div>
-                            <!--<button class="edit-buttons" id="edit-button-${localStorage.getObj("count")-1}"><img src="/multimedia/img/pencil.png"></button>-->
-                            
                             
                             </div>
-                        </li>
+                            <div style="display:flex;flex-direction: row; justify-content: space-between; align-items: center;">
+                                <img class="edit-buttons" id="edit-button-${localStorage.getObj("count")-1}" src="/multimedia/img/pencil.png" style="width: 1rem;margin:1rem;"/>
+                                <img class="delete-buttons" id="delete-button-${localStorage.getObj("count")-1}" src="/multimedia/img/trashcan.png" style="width: 1rem; margin:1rem"/>
+                            </div>
+                            
+                            
+                            
+                        </div>
                         `;
 
-        document.getElementById("post-list").innerHTML += csPost;
+        outputBox.innerHTML += csPost;
     }
     bindDummyButtons();
 

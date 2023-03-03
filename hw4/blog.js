@@ -79,13 +79,13 @@ function updateBlogPost(){
  *
  */
 function deleteBlogPost(){
+    let deleteDialog = document.getElementById('delete-post-dialog');
 
-    let posts = localStorage.getObj("posts");
-    posts.splice(event.srcElement.id.slice(-1));
-    document.getElementById(`post-${event.srcElement.id.slice(-1)}`).style.display = "none";
+    let postNumber = event.srcElement.id.slice(-1);
+    document.getElementById('delete-post-number').value = postNumber;
 
-    //decrement count of posts
-    localStorage.setObj("count", localStorage.getObj("count")-1);
+    deleteDialog.show();
+
 }
 
 /**blogMain
@@ -121,13 +121,24 @@ function blogMain(){
         summaryInput.required = false;
     });
 
-    let newPost = "";
+    document.getElementById('delete-confirmBtn').addEventListener('click',()=>{
+
+        let posts = localStorage.getObj("posts");
+        let postNumber = document.getElementById('delete-post-number').value;
+        posts.splice(postNumber); //remove from localStorage
+
+        document.getElementById(`post-${postNumber}`).style.display = "none";
+
+        //decrement count of posts
+        localStorage.setObj("count", localStorage.getObj("count")-1);
+    });
+
     //listen for click of confirm button, and check if input is filled in,
     // if whitespace only, then dialoag will close as required will be satisifed
     // in the form inputs, but it will not make a new post, as the inputs are trimmed
     // for excess whitespace in the if statement check
     document.getElementById('update-confirmBtn').addEventListener('click', ()=>{
-
+        let posts = localStorage.getObj("posts");
         let postNumber = document.getElementById('update-post-number').value;
         console.log("POSTNUMBER");
         console.log(postNumber);
@@ -136,6 +147,12 @@ function blogMain(){
             document.getElementById(`post-title-${postNumber}`).innerHTML = updateTitleInput.value;
             document.getElementById(`post-date-${postNumber}`).textContent = updateDateInput.value;
             document.getElementById(`post-summary-${postNumber}`).textContent = updateSummaryInput.value;
+
+            /**update localStorage*/
+            posts[postNumber][0] = updateTitleInput.value;
+            posts[postNumber][1] = updateDateInput.value;
+            posts[postNumber][2] = updateSummaryInput.value;
+            localStorage.setObj('posts',posts);
         }
 
 
@@ -194,7 +211,10 @@ function blogMain(){
 }
 
 function makeDummyPosts(){
-    return [["New JS Framework", "2023/01/02","summary"],["Using Bootstrap for Responsive Design", "02/23/2020","summary"],["Hacking 101: Port Sniffing", "2023/20/2", "The basics and fundamentals of networking, ports, and common tools."],[]]
+    return [["New JS Framework", "2023-01-02","This generic new framework/library will remedy all of your problems."],
+        ["Using Bootstrap for Responsive Design", "2020-02-23","This article provides details on a framework to help expedite web design."],
+        ["Hacking 101: Port Sniffing", "2023-02-02", "The basics and fundamentals of networking, ports, and common tools."],
+        ["Creating Art with Code", "2019-05-22", "Simple ways to animate using CSS and JavaScript in a Web Browser."]];
 }
 function populateWithBlogs(posts){
     for(let i = 0; i < posts.length; i++){
