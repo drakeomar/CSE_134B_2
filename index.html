@@ -9,6 +9,8 @@
     <!-- could not convert png to webp with transparent background, so using png-->
     <link rel="icon" href="/multimedia/img/icon.png"/>
     <link href="main.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK32BCTRW"></script>
     <script>
@@ -18,7 +20,11 @@
 
         gtag('config', 'G-KSK32BCTRW');
     </script>
-    <script src="myjs.js"></script>
+    <script type="module">
+        import {main} from './myjs.js';
+
+        main();
+    </script>
     <style>
         audio{
             margin: 2vh;
@@ -242,7 +248,7 @@
             </section>
         </section>
         <br>
-        <section> <!-- Art Section -->
+        <section class="reveal"> <!-- Art Section -->
             <h2>Art Endeavors</h2>
             <section id="main-art">
                 <section id="art-1">
@@ -283,12 +289,16 @@
         </section>
     </main>
     <br><hr>
-    <footer>
+    <footer data-aos="fade-in">
         <h3> Get in Contact with Me! </h3>
         <p> Access the <b><span class="highlight"> <a href="/contact.html"> Contact Page </a></span> </b></p>
         <p> <em>OR reach me by...</em></p>
         <p><b>  Phone Number: </b> <a href="tel:+15015549898">501-554-9898</a> </p>
         <p><b> Email: </b> <a href="mailto:drakeomar@icloud.com"> drakeomar@icloud.com </a> </p>
     </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>

@@ -1,12 +1,12 @@
-/**setObj and getObj defined to simplify getting and setting
- * from
+/**setObj defined to simplify setting with JSON.stringify
+ *
  * @param key
  * @param obj
  */
 Storage.prototype.setObj = function(key, obj) {
     return this.setItem(key, JSON.stringify(obj))
 }
-/**
+/**getObj defined to simplify getting with JSON.parse
  *
  * @param key
  * @returns {any}
@@ -14,9 +14,7 @@ Storage.prototype.setObj = function(key, obj) {
 Storage.prototype.getObj = function(key) {
     return JSON.parse(this.getItem(key))
 }
-function makeDummyPosts(){
-    return [["New JS Framework", "2023/01/02","summary"],["Using Bootstrap for Responsive Design", "02/23/2020","summary"],["Hacking 101: Port Sniffing", "2023/20/2", "The basics and fundamentals of networking, ports, and common tools."],[]]
-}
+
 
 /**DOM ELEMENTS*/
 const titleInput = document.getElementById('title-input');
@@ -29,8 +27,69 @@ const confirmBtn = document.getElementById('confirmBtn');
 const cancelBtn = document.getElementById('cancel-button');
 const outputBox = document.getElementById('output-box');
 
-/**blogMain
+/**create new blog post, display it, and update backing array
  *
+ */
+function createBlogPost(){
+
+    const newPostDialog = document.getElementById('new-post-dialog');
+    const titleInput = document.getElementById('title-input');
+    const dateInput = document.getElementById('date-input');
+    const summaryInput = document.getElementById('summary-text');
+    /*
+    const confirmBtn = document.getElementById('confirmBtn');
+    const cancelBtn = document.getElementById('cancel-button');
+    const outputBox = document.getElementById('output-box');
+    let newPost = "";
+    let posts = localStorage.getObj("posts");
+    */
+
+    /**clear inputs and show dialog for new post*/
+    titleInput.value = "";
+    titleInput.required = true;
+    dateInput.value = "";
+    dateInput.required = true;
+    summaryInput.value = "";
+    summaryInput.required = true;
+    newPostDialog.show();
+}
+
+/**
+ * Update the current blog post being editted, display edits, and update backing arrow
+ */
+function updateBlogPost(){
+    const updatePostDialog = document.getElementById('update-post-dialog');
+    let posts = localStorage.getObj("posts");
+    let postNumber = event.srcElement.id.slice(-1);
+
+    /**assign corresponding inputs and show dialog for updating post*/
+    document.getElementById('update-title-input').value = posts[postNumber][0];
+    document.getElementById('update-title-input').required = true;
+    document.getElementById('update-date-input').value = posts[postNumber][1];
+    document.getElementById('update-date-input').required = true;
+    document.getElementById('update-summary-text').value = posts[postNumber][2];
+    document.getElementById('update-summary-text').required = true;
+    document.getElementById('update-post-number').value = postNumber;
+
+    updatePostDialog.show();
+
+}
+/**
+ * delete the associated blog post from localStorage and the display
+ *
+ */
+function deleteBlogPost(){
+
+    let posts = localStorage.getObj("posts");
+    posts.splice(event.srcElement.id.slice(-1));
+    document.getElementById(`post-${event.srcElement.id.slice(-1)}`).style.display = "none";
+
+    //decrement count of posts
+    localStorage.setObj("count", localStorage.getObj("count")-1);
+}
+
+/**blogMain
+ * mainly attach even listeners and mock blog posts with helper functions
  */
 function blogMain(){
     let posts = null;
@@ -89,11 +148,11 @@ function blogMain(){
 
                 //increment count of posts
                 localStorage.setObj("count", localStorage.getObj("count")+1);
+
                 let csPost = `
-                        <li id="post-${localStorage.getObj("count")-1}"> 
-                        <div style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
-                        border:solid black 1px;margin: 1rem; border-radius: 2rem">
-                            
+                        <section id="post-${localStorage.getObj("count")-1}" style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
+                        border:solid black 1px;margin: 2rem; border-radius: 2rem">
+                            <div style="display:flex; flex-direction:column">
                                 <div style="display: flex; flex-direction:row">
                                     <h2 id="post-title-${localStorage.getObj("count")-1}">${titleInput.value} </h2>
                                     <p id="post-date-${localStorage.getObj("count")-1}">posted ${dateInput.value} </p>
@@ -101,28 +160,12 @@ function blogMain(){
 
                                 <p id="post-summary-${localStorage.getObj("count")-1}">${summaryInput.value}</p>
                                 
-                            
-                            <button id="edit-button-${localStorage.getObj("count")-1}" onclick="updateBlogPost()">Edit</button>
-                            <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
-                            </div>
-                        </li>
-                        `;
-                newPost = `
-                        <section id="post-${localStorage.getObj("count")-1}" style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
-                        border:solid black 1px;margin: 2rem; border-radius: 2rem">
-                            <div style="display:flex; flex-direction:column">
-                                <div style="display: flex; flex-direction:row">
-                                    <h2>${titleInput.value}:</h2>
-                                    <p>${dateInput.value}</p>
-                                </div>
-
-                                <p>${summaryInput.value}</p>
-                                
                             </div>
                             <button id="edit-button-${localStorage.getObj("count")-1}">Edit</button>
                             <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
                         </section>
                         `;
+
                 document.getElementById("post-list").innerHTML += csPost;
 
                 /** handle click events with correct functions for buttons*/
@@ -150,6 +193,9 @@ function blogMain(){
     populateWithBlogs(posts);
 }
 
+function makeDummyPosts(){
+    return [["New JS Framework", "2023/01/02","summary"],["Using Bootstrap for Responsive Design", "02/23/2020","summary"],["Hacking 101: Port Sniffing", "2023/20/2", "The basics and fundamentals of networking, ports, and common tools."],[]]
+}
 function populateWithBlogs(posts){
     for(let i = 0; i < posts.length; i++){
         console.log(posts[i]);
@@ -184,6 +230,9 @@ function populateWithBlogs(posts){
 
 }
 
+/** binds the dummy or mock buttons separately to avoid conflicts
+ *
+ */
 function bindDummyButtons(){
     let deleteButtons = document.getElementsByClassName('delete-buttons');
     for(let j = 0; j < deleteButtons.length; j++){
@@ -196,54 +245,5 @@ function bindDummyButtons(){
     }
 }
 
-function createBlogPost(){
 
-    const newPostDialog = document.getElementById('new-post-dialog');
-    const titleInput = document.getElementById('title-input');
-    const dateInput = document.getElementById('date-input');
-    const summaryInput = document.getElementById('summary-text');
-    /*
-    const confirmBtn = document.getElementById('confirmBtn');
-    const cancelBtn = document.getElementById('cancel-button');
-    const outputBox = document.getElementById('output-box');
-    let newPost = "";
-    let posts = localStorage.getObj("posts");
-    */
-
-    /**clear inputs and show dialog for new post*/
-    titleInput.value = "";
-    titleInput.required = true;
-    dateInput.value = "";
-    dateInput.required = true;
-    summaryInput.value = "";
-    summaryInput.required = true;
-    newPostDialog.show();
-}
-
-function deleteBlogPost(){
-
-    let posts = localStorage.getObj("posts");
-    posts.splice(event.srcElement.id.slice(-1));
-    document.getElementById(`post-${event.srcElement.id.slice(-1)}`).style.display = "none";
-
-    //decrement count of posts
-    localStorage.setObj("count", localStorage.getObj("count")-1);
-}
-function updateBlogPost(){
-    const updatePostDialog = document.getElementById('update-post-dialog');
-    let posts = localStorage.getObj("posts");
-    let postNumber = event.srcElement.id.slice(-1);
-
-    /**assign corresponding inputs and show dialog for updating post*/
-    document.getElementById('update-title-input').value = posts[postNumber][0];
-    document.getElementById('update-title-input').required = true;
-    document.getElementById('update-date-input').value = posts[postNumber][1];
-    document.getElementById('update-date-input').required = true;
-    document.getElementById('update-summary-text').value = posts[postNumber][2];
-    document.getElementById('update-summary-text').required = true;
-    document.getElementById('update-post-number').value = postNumber;
-
-    updatePostDialog.show();
-
-}
-export {blogMain, createBlogPost, deleteBlogPost, updateBlogPost}
+export {blogMain}

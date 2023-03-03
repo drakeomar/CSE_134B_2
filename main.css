@@ -345,11 +345,13 @@ body {
     }
 }
 .nav-items {
+
     overflow-y: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
+    overflow: hidden;
     /*margin-left: 10vw;*/
 
 }
