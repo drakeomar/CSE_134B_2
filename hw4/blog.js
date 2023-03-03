@@ -109,6 +109,7 @@ function blogMain(){
         createBlogPost();
     });
 
+
     posts = makeDummyPosts();
     localStorage.setObj('posts', posts);
 
@@ -167,9 +168,10 @@ function blogMain(){
                 localStorage.setObj("count", localStorage.getObj("count")+1);
 
                 let csPost = `
-                        <section id="post-${localStorage.getObj("count")-1}" style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
-                        border:solid black 1px;margin: 2rem; border-radius: 2rem">
-                            <div style="display:flex; flex-direction:column">
+                        <li id="post-${localStorage.getObj("count")-1}"> 
+                        <div style="display:flex; flex-direction: row; justify-content: space-around; align-items: center; 
+                        border:solid black 1px;margin: 1rem; border-radius: 2rem">
+                            
                                 <div style="display: flex; flex-direction:row">
                                     <h2 id="post-title-${localStorage.getObj("count")-1}">${titleInput.value} </h2>
                                     <p id="post-date-${localStorage.getObj("count")-1}">posted ${dateInput.value} </p>
@@ -177,10 +179,12 @@ function blogMain(){
 
                                 <p id="post-summary-${localStorage.getObj("count")-1}">${summaryInput.value}</p>
                                 
+                            
+                            <button class="edit-buttons" id="edit-button-${localStorage.getObj("count")-1}">Edit</button>
+                            <button class="delete-buttons" id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
                             </div>
-                            <button id="edit-button-${localStorage.getObj("count")-1}">Edit</button>
-                            <button id="delete-button-${localStorage.getObj("count")-1}">Delete</button>
-                        </section>
+                        </li>
+                        
                         `;
 
                 document.getElementById("post-list").innerHTML += csPost;
