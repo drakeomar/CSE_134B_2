@@ -15,6 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
 
   <link href="main.css" rel="stylesheet">
+  <script type="module">
+    import {main} from './myjs.js';
+
+    main();
+  </script>
 </head>
 <body>
   <header>
@@ -54,5 +59,9 @@
     <p><b> Phone Number: </b></p> <a href="tel:+15015549898">501-554-9898</a>
     <p><b> Email: </b></p> <a href="mailto:drakeomar@icloud.com"> drakeomar@icloud.com </a>
   </footer>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>

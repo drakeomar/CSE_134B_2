@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drake Omar's Professional Experience</title>
-
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link href="main.css" rel="stylesheet">
     <style>
         @media only screen and (min-width: 505px){
@@ -92,6 +92,12 @@
 
         gtag('config', 'G-KSK32BCTRW');
     </script>
+
+    <script type="module">
+        import {main} from './myjs.js';
+
+        main();
+    </script>
 </head>
 <body>
     <header>
@@ -130,9 +136,9 @@
 
         <section id="resume">
             <hr>
-            <h2> Work and Resume Experience </h2>
-            <section id="resume-1">
-                <ul> <h3> Wire Cut Company, Inc. </h3>
+            <h2 data-aos="fade-left"> Work and Resume Experience </h2>
+            <section data-aos="fade-right" id="resume-1">
+                <ul> <h3> Wire Cut Company, Inc. </h3> <h4>CIO/SysAdmin</h4>
                     <li>
                         In 2021, oversaw contract procurement and approved quotes for $4.8 million in sales from Fortune 100 companies
                     </li>
@@ -142,10 +148,16 @@
                     <li>
                         Identified patterns and implemented measures to maintain the integrity of the security through controls so as to abide by industry standards (NIST SP 800-171)
                     </li>
+                    <li>
+                        Coordinated with other management and chief positions at Wire Cut in order to ensure profitability and quality, and make executive decisions pertaining to procurement, expenses, guidance, strategy, and efficiency.
+                    </li>
+                    <li>
+                        Managed all IT and server-related issues, including the Windows Server system, database, networking, security protocols and controls, email server, and basic troubleshooting.
+                    </li>
                 </ul>
             </section>
-            <section id="resume-2">
-                <ul> <h3>Hershey's Market</h3>
+            <section data-aos="fade-left" id="resume-2">
+                <ul> <h3>Hershey's Market</h3><h4>Junior Manager, Cashier, Deli Clerk</h4>
                     <li>
                         Helped monitor daily operations of the Deli and the grocery section including inventory and sales
                     </li>
@@ -159,9 +171,9 @@
             </section>
         </section>
         <hr>
-        <section id="project-table">
+        <section data-aos="fade-right" id="project-table">
             <h2> <code> CS Projects </code> </h2>
-            <table>
+            <table data-aos="fade-in">
                 <colgroup>
                     <col span="2">
                     <col>
@@ -206,14 +218,14 @@
 
         </section>
         <hr>
-        <section id="link-section">
+        <section data-aos="fade-left" id="link-section">
             <h2>Links</h2>
             <p><a href="https://github.com/drakeomar"> Github Profile</a></p>
             <p><a href="https://www.linkedin.com/in/drake-omar-07a921186?original_referer=https%3A%2F%2Fwww.google.com%2F">LinkedIn Profile</a></p>
         </section>
     </main>
     <hr>
-    <footer>
+    <footer data-aos="fade-in">
         <p> Get in Contact with Me! </p>
         <p> Access the <b><span class="highlight"> <a href="/contact.html"> Contact Page </a></span> </b></p>
         <p> <em>OR..</em></p>
@@ -221,5 +233,9 @@
         <p><b> Email: </b></p> <a href="mailto:drakeomar@icloud.com"> drakeomar@icloud.com </a>
     </footer>
     <hr>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>

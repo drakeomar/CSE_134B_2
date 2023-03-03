@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Information</title>
     <link href="main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
 
         h1{
@@ -85,6 +86,11 @@
             }
         }
     </style>
+    <script type="module">
+        import {main} from './myjs.js';
+
+        main();
+    </script>
 </head>
 <body>
     <header>
@@ -120,7 +126,7 @@
         <section id="header-type">
             <h1> Contact Me! </h1><hr>
         </section>
-        <section id="feedback-section" class="red-section">
+        <section data-aos="fade-right" id="feedback-section" class="red-section">
             <h2> Submit Anonymous Feedback </h2>
             <form id="feedback-form" action="/feedback_collector.php" method="post">
                 <label for="feedback"><em>Give Your Honest Feedback: </em></label>
@@ -138,7 +144,7 @@
         </template>
         <br>
         <h2> Reach Out! </h2>
-        <form id="message-form" action="/contact_collector.php" method="post">
+        <form data-aos="fade-left" id="message-form" action="/contact_collector.php" method="post">
             <legend><code>Send a Message!</code></legend>
             <fieldset>
                 <label for="roles">What describes you best from the list: </label>
@@ -189,12 +195,16 @@
         </template>
     </main>
     <hr>
-    <footer>
+    <footer data-aos="fade-in">
         <p> Get in Contact with Me! </p>
         <p> Access the <b><span class="highlight"> <a href="/contact.html"> Contact Page </a></span> </b></p>
         <p> <em>OR..</em></p>
         <p><b> Phone Number: </b></p> <a href="tel:+15015549898">501-554-9898</a>
         <p><b> Email: </b></p> <a href="mailto:drakeomar@icloud.com"> drakeomar@icloud.com </a>
     </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
