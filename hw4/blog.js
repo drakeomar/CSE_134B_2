@@ -92,7 +92,7 @@ function deleteBlogPost(){
  * mainly attach even listeners and mock blog posts with helper functions
  */
 function blogMain(){
-    let posts = null;
+    let posts;
 
     if (localStorage.getItem("count") === null) {
         localStorage.setObj('count', 0);
