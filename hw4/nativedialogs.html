@@ -64,7 +64,7 @@
             let personName = window.prompt("What is your name?");
 
             //evaluate response
-            if(!personName.trim() == ""){
+            if(personName){
                 outputBox.style.display = "inline-block";
                 outputBox.innerHTML = `<div style="border:black 4px; border-style:double;
                                                                     padding:1rem;"><p>Welcome ${personName}!</p>
@@ -81,7 +81,7 @@
             let personName = window.prompt("What is your name?");
 
             //evaluate response
-            if(!personName.trim() == ""){
+            if(personName){
                 outputBox.innerHTML = cleanUp`<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>Welcome ${personName}!</p>
                                                                    <p>This website aims to provide cool features for users like you, ${personName}</p></div>`;
                 outputBox.style.display = "inline-block";
